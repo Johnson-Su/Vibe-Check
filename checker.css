@@ -1,0 +1,125 @@
+body {
+  background: #FFFAF0;
+}
+
+.radio {
+  position: absolute;
+  width: 1022px;
+  height: 816px;
+  left: calc(50% - 1022px/2 + 13px);
+  top: calc(50% - 816px/2);
+  z-index: 1;
+}
+
+.radiofront {
+  position: absolute;
+  width: 1022px;
+  height: 572px;
+  left: calc(50% - 1022px/2 + 13px);
+  top: calc(50% - 572px/2 + 122px);
+  z-index: 3;
+}
+
+input[type="range"][class="slider"] {
+   transform: rotate(270deg);
+}
+
+.slider {
+  -webkit-appearance: none;
+  outline: none;
+  position: absolute;
+  width: 700px;
+  height: 1px;
+  top: calc(50% - 120px);
+  left: calc(50% - 340px);
+  background-color:transparent;
+  z-index: 2;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 364px;
+  height: 253px;
+  background: url(https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FCassette.gif?v=1591399606563);
+  background-size: cover;
+  transform: rotate(90deg);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.slider::-moz-range-thumb {
+  width: 100px;
+  height: 100px;
+  background: url(https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FCassette.gif?v=1591399606563);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.vslider {
+  -webkit-appearance: none;
+  position: absolute;
+  width: 285.86px;
+  height: 13px;
+  left: calc(50% - 285.86px/2 + 71.52px);
+  top: calc(50% - 11.96px/2 + 348.14px);
+  border-radius: 5px;
+  background: #FFFFFF;
+  z-index: 4;
+}
+
+.vslider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #F26738;
+  cursor: pointer;
+}
+
+.vslider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.strict{
+  position: absolute;
+  width: 78.94px;
+  height: 23.92px;
+  left: calc(50% - 78.94px/2 + 259.9px);
+  top: calc(50% - 23.92px/2 + 336px);
+
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  letter-spacing: 0.05em;
+
+  color: #FFFFFF;
+  z-index: 4;
+}
+
+.lax{
+  position: absolute;
+  width: 43.06px;
+  height: 23.92px;
+  left: calc(50% - 43.06px/2 - 103.71px);
+  top: calc(50% - 23.92px/2 + 336px);
+
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  letter-spacing: 0.05em;
+
+  color: #FFFFFF;
+  z-index: 4;
+}

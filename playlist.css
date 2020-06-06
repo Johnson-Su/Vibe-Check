@@ -1,0 +1,11 @@
+body {
+  background: #FFFAF0;
+}
+
+.playframe {
+  position: absolute;
+  width: 1378px;
+  height: 985px;
+  left: calc(50% - 1378px/2);
+  top: calc(50% - 985px/2 - 0.5px);
+}
