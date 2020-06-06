@@ -26,13 +26,13 @@
   <body>
     <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2Fvibechecker.png?v=1591427001951" class="radio">
     <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2Fcheckerfront1.png?v=1591475595294" class="radiofront">
-    <input orient="vertical" type="range" min="1" max="100" value="100" id="slider" class="slider" oninput="return runMyFunction1();">
+    <input orient="vertical" type="range" min="1" max="100" value="100" id="check-slider" class="slider" oninput="return runMyFunction1();">
 
     <script>
         function runMyFunction1() {
-          var slider = document.getElementById("slider");
+          var check_slider = document.getElementById("check-slider");
           var box1 = document.getElementById("box1");
-          if(slider.value <= 20){
+          if(check_slider.value <= 20){
             console.log("AHHHH");
             box1.classList.add("box");
           }

@@ -61,7 +61,7 @@ if (error) {
             console.log("Reached Playlists")
             console.log(playlists);
 
-    // ************* vibe check stuff ***************
+    // ************* playlist stuff ***************
             // set playlist names to cassettes
             var num=0;
             var num1=0;
@@ -75,35 +75,22 @@ if (error) {
                 var row = table.insertRow(-1);
                 var cell1 = row.insertCell(0);
                 cell1.innerHTML = playlist_name;
-                if(num%3==0){
-                    cell1.className = 'orange';
-                }
-                if(num%3==1){
-                    cell1.className = 'white';
-                }
-                if(num%3==2){
-                    cell1.className = 'yellow';
-                }
+                if(num%3==0){cell1.className = 'orange';}
+                else if(num%3==1){cell1.className = 'white';}
+                else if(num%3==2){cell1.className = 'yellow'; }
                 cell1.id = "playlist" + index;
                 num++;
               }
               else{
                 var cell2 = row.insertCell(1);
                 cell2.innerHTML = playlist_name;
-                if(num1%3==0){
-                    cell2.className = 'black';
-                }
-                if(num1%3==1){
-                    cell2.className = 'yellow';
-                }
-                if(num1%3==2){
-                    cell2.className = 'blue';
-                }
+                if(num1%3==0){cell2.className = 'black';}
+                else if(num1%3==1){cell2.className = 'yellow';}
+                else if(num1%3==2){cell2.className = 'blue'; }
                 cell2.id = "playlist" + index;
                 num1++;
               }
             }
-
 
             for(playlist_id = 0; playlist_id < playlists.items.length; playlist_id++){
                 document.getElementById("playlist" + playlist_id).addEventListener('click',
@@ -116,6 +103,9 @@ if (error) {
                                 'Authorization': 'Bearer ' + access_token
                             },
                             success: function(playlist) {
+                                $('#loggedin').hide();
+                                $('#vibe-checker').show();
+
                                 console.log("playlist: " + playlist.name);
                                 playlist.tracks.items.forEach(function(track){
                                     // console.log(track.track.name);
@@ -136,7 +126,8 @@ if (error) {
                         },)
                     });
             }
-        // ********** vibe check stuff ************
+
+        // ********** end playlist stuff ************
 
 
             var array_size = playlists.items.length;

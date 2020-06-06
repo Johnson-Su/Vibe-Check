@@ -23,9 +23,9 @@
       <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FRadio%20Front.png?v=1591399819762" class="radiofront">
       <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FRadioBack.png?v=1591400011590" class="radioback">
       <div class="orangeextend"></div>
-      <input orient="vertical" type="range" min="1" max="100" value="100" class="slider" id="slider" oninput="return runMyFunction();">
+      <input orient="vertical" type="range" min="1" max="100" value="100" class="slider" id="slider" oninput="return loginSlider();">
       <script>
-          function runMyFunction() {
+          function loginSlider() {
             var slider = document.getElementById("slider");
             if(slider.value <= 20){
               window.location.href="/login";
@@ -40,13 +40,42 @@
 
 
     <div id="loggedin">
-
       <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FPlayframe%201.png?v=1591424724953" class="playframe">
-
       <div class="container">
         <table id="myTable" class="table"></table>
       </div>
+    </div>
 
+    <div id="vibe-checker">
+      <h1>vibe checker</h1>
+      <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2Fvibechecker.png?v=1591427001951" class="radio">
+      <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2Fcheckerfront1.png?v=1591475595294" class="check-radiofront">
+      <input orient="vertical" type="range" min="1" max="100" value="100" id="check-slider" class="check-slider" oninput="return checkSlider();">
+  
+      <script>
+          function checkSlider() {
+            var check_slider = document.getElementById("check-slider");
+            var box1 = document.getElementById("box1");
+            if(check_slider.value <= 20){
+              console.log("AHHHH");
+              box1.classList.add("box");
+            }
+            return true;
+          }
+        </script>
+  
+      <input type="range" min="1" max="100" value="50" class="vslider">
+      <p class="lax">LAX</p>
+      <p class="strict">STRICT</p>
+      <p class="vibemeter">VIBE METER</p>
+  
+      <div class="box1" id="box1"></div>
+  
+      <div class="playlists">
+      <iframe src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      </div>
+  
+      <div class="cover"></div>
     </div>
 
 
