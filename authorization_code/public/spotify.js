@@ -56,9 +56,27 @@ if (error) {
         headers: {
             'Authorization': 'Bearer ' + access_token
         },
-        success: function(response) {
-            document.getElementById("playlist-name").innerHTML = response.items[0].name;
-            console.log(response);
+        success: function(playlists) {
+            document.getElementById("playlist-name").innerHTML = playlists.items[0].name;
+            console.log(playlists);
+
+           
+            var playlist_url = playlists.items[0].href;
+            $.ajax({
+                url:playlist_url, 
+                headers: {
+                    'Authorization': 'Bearer ' + access_token
+                },
+                success: function(playlist) {
+                    console.log("playlist: " + playlist.name);
+                    playlist.tracks.items.forEach(function(track){
+                        console.log(track.track.name);
+                    });
+                }
+            },)	
+
+
+
 
             $('#login').hide();
             $('#loggedin').show();
