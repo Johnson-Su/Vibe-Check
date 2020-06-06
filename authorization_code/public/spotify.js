@@ -133,7 +133,7 @@ if (error) {
                         tempo: { mean: 0, stdev: 0 },
                         count: 0,
                         track_data: [],
-                        filtered_uris: ""
+                        filtered_uris: []
                     };
                     console.log(playlist_data);
                     Object.assign(playlist, playlist_data)
@@ -245,19 +245,22 @@ if (error) {
                     */
                     playlist.filter = function(filter_threshold) {
                         console.log("Called filter");
-                        playlist.filtered_uris = ""
+                        playlist.filtered_uris = []
                         //based off filter, remove tracks that are bad
-                        for(track in track_data){
-                            if ((Math.abs(playlist.acousticness.mean - track.acousticness)/playlist.acousticness.variance < filter_threshold) || (Math.abs(playlist.danceability.mean - track.danceability)/playlist.danceability.variance < filter_threshold)
-                                || (Math.abs(playlist.energy.mean - track.energy)/playlist.energy.variance < filter_threshold)
-                                || (Math.abs(playlist.loudness.mean - track.loudness)/playlist.loudness.variance < filter_threshold)
-                                || (Math.abs(playlist.speechiness.mean - track.danceability)/playlist.speechiness.variance < filter_threshold)
-                                || (Math.abs(playlist.valence.mean - track.valence)/playlist.valence.variance < filter_threshold)
-                                || (Math.abs(playlist.tempo.mean - track.tempo)/playlist.tempo.variance < filter_threshold)){
-                                playlist.filtered_uris += track.uri + ",";
+                        for(var i = 0; i < playlist.track_data.length; i++){
+                            if ((Math.abs(playlist.acousticness.mean - playlist.track_data[i].acousticness)/playlist.acousticness.stdev < filter_threshold) 
+                                || (Math.abs(playlist.danceability.mean - playlist.track_data[i].danceability)/playlist.danceability.stdev < filter_threshold)
+                                || (Math.abs(playlist.energy.mean - playlist.track_data[i].energy)/playlist.energy.stdev < filter_threshold)
+                                || (Math.abs(playlist.loudness.mean - playlist.track_data[i].loudness)/playlist.loudness.stdev < filter_threshold)
+                                || (Math.abs(playlist.speechiness.mean - playlist.track_data[i].danceability)/playlist.speechiness.stdev < filter_threshold)
+                                || (Math.abs(playlist.valence.mean - playlist.track_data[i].valence)/playlist.valence.stdev < filter_threshold)
+                                || (Math.abs(playlist.tempo.mean - playlist.track_data[i].tempo)/playlist.tempo.stdev < filter_threshold)){
+                                playlist.filtered_uris.push(playlist.track_data[i].uri);
+                            }else{
+                                console.log('Rejected URI: ' + playlist.track_data[i].uri);
                             }
                         }
-                        playlist.filtered_uris 
+                        console.log('Workable URIs: ' +  playlist.filtered_uris);
                     }//filter
 
                     //Function to generate filtered playlist. Can only be called post-filter.
@@ -272,10 +275,13 @@ if (error) {
                                 'Content-Type': 'application/json'
                             },
                             data: JSON.stringify({
-                                'name': playlist_name + '[Vibe Checked]'
+                                'name': playlist_name + ' [Vibe Checked]'
                             }),
+                            type: 'POST',
                             success: function(new_playlist) {
                                 //now make ajax call to populate playlist with filtered information
+                                console.log("Successfully Generated Playlist: " + new_playlist.name);
+                                console.log("Try adding in the following: " + playlist.filtered_uris);
                                 $.ajax({
                                     url: 'https://api.spotify.com/v1/playlists/' + new_playlist.id + '/tracks',
                                     headers: {
@@ -285,8 +291,9 @@ if (error) {
                                     data: JSON.stringify({
                                         'uris': playlist.filtered_uris
                                     }),
+                                    type: 'POST',
                                     success: function(snapshot) {
-                                        console.log(snapshot.snapshot_id);
+                                        console.log("Looks like we got it in!" + snapshot.snapshot_id);
                                     }
                                 },);//ajax call to populate playlist
                             }
@@ -316,6 +323,7 @@ if (error) {
                                         console.log(playlist.track_data.length + " and " + playlist.tracks.items.length);
                                         if(playlist.track_data.length === playlist.tracks.items.length){
                                             playlist.compile();
+                                            playlist.generateFilteredPlaylist(playlist.name, .5);
                                         }
                                     },
                                 },)
