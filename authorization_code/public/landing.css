@@ -129,7 +129,74 @@ input[type="range"] {
 
   color: #000000;
 }
-/* 
+
+.orange {
+  padding: 20px;
+  width: 527.18px;
+  height: 145.17px;
+  background: url(https://cdn.glitch.com/0456e103-c3c8-43b3-9b4d-21cb729ad1b2%2Forange.png?v=1591473954841);
+  background-repeat: no-repeat;
+}
+
+.white {
+  padding: 10px;
+  width: 527.18px;
+  height: 145.17px;
+  background: url(https://cdn.glitch.com/0456e103-c3c8-43b3-9b4d-21cb729ad1b2%2Fwhite.png?v=1591473954900);
+  background-repeat: no-repeat;
+}
+
+.yellow {
+  padding: 10px;
+  width: 527.18px;
+  height: 145.17px;
+  background: url(https://cdn.glitch.com/0456e103-c3c8-43b3-9b4d-21cb729ad1b2%2Fyellow.png?v=1591473954732);
+  background-repeat: no-repeat;
+}
+
+.black {
+  padding: 10px;
+  width: 527.18px;
+  height: 145.17px;
+  background: url(https://cdn.glitch.com/0456e103-c3c8-43b3-9b4d-21cb729ad1b2%2Fblack.png?v=1591473954615);
+  background-repeat: no-repeat;
+}
+
+.blue {
+  padding: 10px;
+  width: 527.18px;
+  height: 145.17px;
+  background: url(https://cdn.glitch.com/0456e103-c3c8-43b3-9b4d-21cb729ad1b2%2Fblue.png?v=1591473954799);
+  background-repeat: no-repeat;
+}
+
+.container{
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  position: absolute;
+  width: 1138px;
+  height: 561px;
+  left: calc(50% - 1138px/2);
+  top: calc(50% - 561px/2 + 48.5px);
+
+  font-family: Gloria Hallelujah;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 71px;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.table{
+  height:auto;
+  width: 1138px;
+  left: calc(50% - 1138px/2);
+  top: calc(50% - 561px/2 + 48.5px);
+}
+
+/*
 .playlist2 {
   position: absolute;
   width: 378.33px;
