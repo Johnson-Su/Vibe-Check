@@ -23,8 +23,9 @@ var params = getHashParams();
 
 var access_token = params.access_token,
     refresh_token = params.refresh_token,
-    test = params.test,
     error = params.error;
+
+
 
 if (error) {
     alert('There was an error during the authentication');
@@ -42,7 +43,7 @@ if (error) {
             'Authorization': 'Bearer ' + access_token
         },
         success: function(response) {
-            userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+            // userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
             $('#login').hide();
             $('#loggedin').show();
@@ -59,34 +60,55 @@ if (error) {
             console.log(playlists);
             var array_size = playlists.length;
             console.log("array size" + array_size);
-            var playlist_url = playlists.items[0].href;
-            $.ajax({
-                url: playlist_url,
-                headers: {
-                    'Authorization': 'Bearer ' + access_token
-                },
-                success: function(playlist) {
-                    console.log("playlist: " + playlist.name);
-                    playlist.tracks.items.forEach(function(track){
-                        console.log(track.track.name);
 
-                        $.ajax({
-                            url: 'https://api.spotify.com/v1/tracks/' + track.track.id,
-                            headers: {
-                                'Authorization': 'Bearer ' + access_token
-                            },
-                            success: function(track) {
-                                // console.log(track.danceability);
+            // set playlist names to cassettes
+            for(index = 0; index < 6; index++){
+                document.getElementById("playlist" + (index + 1)).innerHTML = playlists.items[index].name;
 
-                            }
-                        },)
+            }
+            
+                
+                var all_playlists = document.getElementsByClassName("playlist");
+                console.log(all_playlists.length)
 
-                    });
+                for(j = 0; j < all_playlists.length; j++){
+                    playlist_id = all_playlists[j].id;
+                    document.getElementById(all_playlists[j].id).addEventListener('click', 
+                        function(){
+                            checkPlaylist(playlist_id)
+                        });
                 }
-            },)
+                    
+                
+                function checkPlaylist(playlist_id){
+                    // console.log(playlist_number);
+                    $.ajax({
+                        url: playlists.items[playlist_id[playlist_id.length - 1]].href,
+                        headers: {
+                            'Authorization': 'Bearer ' + access_token
+                        },
+                        success: function(playlist) {
+                            console.log("playlist: " + playlist.name);
+                            playlist.tracks.items.forEach(function(track){
+                                // console.log(track.track.name);
 
+                                // $.ajax({
+                                //     url: 'https://api.spotify.com/v1/audio-features/' + track.track.id,
+                                //     headers: {
+                                //         'Authorization': 'Bearer ' + access_token
+                                //     },
+                                //     success: function(track) {
+                                //         // console.log(track);
 
+                                //     }
+                                // },)
 
+                            });
+                        }
+                    },) 
+                }
+
+            
 
             $('#login').hide();
             $('#loggedin').show();
@@ -102,4 +124,7 @@ if (error) {
 
 
 }
+
+
+
 })();

@@ -99,3 +99,143 @@ input[type="range"] {
   cursor: pointer;
   z-index: 2;
 }
+
+.playframe {
+  position: absolute;
+  width: 1170px;
+  height: 836px;
+  left: calc(50% - 1170px/2);
+  top: calc(50% - 836px/2);
+}
+
+.playlist {
+  position: absolute;
+  width: 378.33px;
+  height: 57.3px;
+  left: 30%;
+  top: 36%;
+
+  background: #FFFAF0;
+  border: 3px solid #000000;
+  box-sizing: border-box;
+
+  font-family: Gloria Hallelujah;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 71px;
+  text-align: center;
+  letter-spacing: 0.05em;
+
+  color: #000000;
+}
+/* 
+.playlist2 {
+  position: absolute;
+  width: 378.33px;
+  height: 57.3px;
+  left: 30%;
+  top: 49.5%;
+
+  background: #FFFAF0;
+  border: 3px solid #000000;
+  box-sizing: border-box;
+
+  font-family: Gloria Hallelujah;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 71px;
+  text-align: center;
+  letter-spacing: 0.05em;
+
+  color: #000000;
+}
+
+.playlist3 {
+  position: absolute;
+  width: 378.33px;
+  height: 57.3px;
+  left: 30%;
+  top: 63%;
+
+  background: #FFFAF0;
+  border: 3px solid #000000;
+  box-sizing: border-box;
+
+  font-family: Gloria Hallelujah;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 71px;
+  text-align: center;
+  letter-spacing: 0.05em;
+
+  color: #000000;
+}
+
+.playlist4 {
+  position: absolute;
+  width: 378.33px;
+  height: 57.3px;
+  left: 55%;
+  top: 36%;
+
+  background: #FFFAF0;
+  border: 3px solid #000000;
+  box-sizing: border-box;
+
+  font-family: Gloria Hallelujah;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 71px;
+  text-align: center;
+  letter-spacing: 0.05em;
+
+  color: #000000;
+}
+
+.playlist5 {
+  position: absolute;
+  width: 378.33px;
+  height: 57.3px;
+  left: 55%;
+  top: 49.5%;
+
+  background: #FFFAF0;
+  border: 3px solid #000000;
+  box-sizing: border-box;
+
+  font-family: Gloria Hallelujah;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 71px;
+  text-align: center;
+  letter-spacing: 0.05em;
+
+  color: #000000;
+}
+
+.playlist6 {
+  position: absolute;
+  width: 378.33px;
+  height: 57.3px;
+  left: 55%;
+  top: 63%;
+
+  background: #FFFAF0;
+  border: 3px solid #000000;
+  box-sizing: border-box;
+
+  font-family: Gloria Hallelujah;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 71px;
+  text-align: center;
+  letter-spacing: 0.05em;
+
+  color: #000000;
+} */

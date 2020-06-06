@@ -1,61 +1,3 @@
-<!-- <!doctype html>
-<html>
-  <head>
-    <title>Example of the Authorization Code flow with Spotify</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <style type="text/css">
-      #login, #loggedin {
-        display: none;
-      }
-      .text-overflow {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 500px;
-      }
-    </style>
-  </head>
-  <script src="app.js"></script>
-
-  <body>
-    <div class="container">
-      <div id="login">
-        <h1>This is an example of the Authorization Code flow 93874978</h1>
-        <a class="btn btn-primary" onclick="return runMyFunction();">Log in with Spotify</a>
-        <script>
-          function runMyFunction() {
-            var slider = document.getElementById("butt");
-              window.location.href="/login" ;
-            return true;
-          }
-        </script>
-      </div>
-
-
-
-      <div id="loggedin">
-        <div id="user-profile">
-        </div>
-        <div id="oauth"></div>
-        <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
-        <div id="playlists">
-          <h1>Playlists</h1>
-          <p id="playlist-name">placeholder</p>
-          <button class="btn btn-default" id="get-playlists=">Get Playlists</button>
-        </div>
-      </div>
-    </div>
-
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="/spotify.js"></script>
-  </body>
-</html>   -->
-
-
-
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -71,6 +13,7 @@
     <link rel="stylesheet" href="landing.css">
 
     <script src="app.js" defer></script>
+    <script src="/spotify.js" defer></script>
   </head>
 
   <body>
@@ -85,7 +28,7 @@
           function runMyFunction() {
             var slider = document.getElementById("slider");
             if(slider.value <= 20){
-              window.location.href="/login" ;
+              window.location.href="/login";
             }
             return true;
           }
@@ -95,23 +38,23 @@
       <script src="https://button.glitch.me/button.js" defer></script>
     </div>
 
+
     <div id="loggedin">
-        <div id="user-profile">
-        </div>
-        <div id="oauth"></div>
-        <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
-        <div id="playlists">
-          <h1>Playlists</h1>
-          <p id="playlist-name">placeholder</p>
-          <button class="btn btn-default" id="get-playlists=">Get Playlists</button>
-        </div>
-      </div>
+      <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FGroup%2018.png?v=1591424978711" class="playframe">
+      <button type="text" class="playlist" id="playlist1"></button>
+      <button type="text" class="playlist" id="playlist2"></button>
+      <button type="text" class="playlist" id="playlist3"></button>
+      <button type="text" class="playlist" id="playlist4"></button>
+      <button type="text" class="playlist" id="playlist5"></button>
+      <button type="text" class="playlist" id="playlist6"></button>
+
+
+
     </div>
 
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="/spotify.js" defer></script>
   </body>
 
 
