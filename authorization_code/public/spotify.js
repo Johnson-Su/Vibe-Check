@@ -23,7 +23,6 @@ var params = getHashParams();
 
 var access_token = params.access_token,
     refresh_token = params.refresh_token,
-    test = params.test,
     error = params.error;
 
 var user_id;
@@ -61,6 +60,57 @@ if (error) {
             //document.getElementById("playlist-name").innerHTML = playlists.items[0].name;
             console.log("Reached Playlists")
             console.log(playlists);
+
+    // ************* vibe check stuff ***************
+            // set playlist names to cassettes
+            for(index = 0; index < 6; index++){
+                document.getElementById("playlist" + (index + 1)).innerHTML = playlists.items[index].name;
+
+            }
+            
+                
+                var all_playlists = document.getElementsByClassName("playlist");
+                console.log(all_playlists.length)
+
+                for(j = 0; j < all_playlists.length; j++){
+                    playlist_id = all_playlists[j].id;
+                    document.getElementById(all_playlists[j].id).addEventListener('click', 
+                        function(){
+                            checkPlaylist(playlist_id)
+                        });
+                }
+                    
+                
+                function checkPlaylist(playlist_id){
+                    // console.log(playlist_number);
+                    $.ajax({
+                        url: playlists.items[playlist_id[playlist_id.length - 1]].href,
+                        headers: {
+                            'Authorization': 'Bearer ' + access_token
+                        },
+                        success: function(playlist) {
+                            console.log("playlist: " + playlist.name);
+                            playlist.tracks.items.forEach(function(track){
+                                // console.log(track.track.name);
+
+                                // $.ajax({
+                                //     url: 'https://api.spotify.com/v1/audio-features/' + track.track.id,
+                                //     headers: {
+                                //         'Authorization': 'Bearer ' + access_token
+                                //     },
+                                //     success: function(track) {
+                                //         // console.log(track);
+
+                                //     }
+                                // },)
+
+                            });
+                        }
+                    },) 
+                }
+        // ********** vibe check stuff ************
+
+            
             var array_size = playlists.items.length;
             console.log("Number of Playlists: " + array_size);
             console.log("Try getting first playlist")
@@ -290,4 +340,7 @@ if (error) {
 
 
 }
+
+
+
 })();
