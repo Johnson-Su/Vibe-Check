@@ -143,3 +143,85 @@ input[type="range"][class="slider"] {
   border-radius: 15px;
   z-index: 3;
 }
+
+.vibemeter{
+  position: absolute;
+  width: 184px;
+  height: 33px;
+  left: calc(50% - 181px/2 + 411.5px);
+  top: calc(50% - 33px/2 + 8px);
+
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 33px;
+  text-align: center;
+  letter-spacing: 0.05em;
+
+  color: #000000;
+  z-index: 3;
+}
+
+.box1 {
+  position: absolute;
+  height: 329px;
+  width: 168px;
+  left: calc(50% - 329px/2 + 494px);
+  top: calc(50% - 168px/2 + 146px);
+
+  background: #ffffff;
+  border: 5px solid #2a2f3d;
+  box-sizing: border-box;
+  border-radius: 20px;
+  z-index: 4;
+
+  overflow: hidden;
+}
+
+.box {
+  position: absolute;
+  height: 329px;
+  width: 168px;
+  left: calc(50% - 329px/2 + 494px);
+  top: calc(50% - 168px/2 + 146px);
+
+  background: #ffffff;
+  border: 5px solid #2a2f3d;
+  box-sizing: border-box;
+  border-radius: 20px;
+  z-index: 4;
+
+  overflow: hidden;
+}
+
+.box::before {
+  /* content: "FILL";
+  font-size: 2rem;
+  color: var(--background);
+  font-family: Arial, Helvetica, sans-serif; */
+  left: calc(50% - 200px);
+  top: calc(50%);
+  height: 300px;
+  width: 300px;
+}
+.box::after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 200px);
+  top: calc(50% + 200px);
+  height: 500px;
+  width: 500px;
+  background-color: #F26738;
+  border-radius: 45%; /* Smooth edges to appear like liquid */
+  animation: spin 6s ease-in-out forwards; /* Set to forwards to freeze on last frame */
+}
+
+@keyframes spin {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-100%) rotate(500deg);
+  }
+}
