@@ -123,3 +123,23 @@ input[type="range"][class="slider"] {
   color: #FFFFFF;
   z-index: 4;
 }
+
+.playlists {
+  position: absolute;
+  left: calc(50% - 299px/2 - 318.5px);
+  top: calc(50% - 384px/2 + 199px);
+  z-index: 4;
+}
+
+.cover {
+  position: absolute;
+  width: 318px;
+  height: 398px;
+  left: calc(50% - 315px/2 - 318.5px);
+  top: calc(50% - 395px/2 + 196.5px);
+
+  border: 10px solid black;
+  box-sizing: border-box;
+  border-radius: 15px;
+  z-index: 3;
+}
