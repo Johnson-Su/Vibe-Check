@@ -1,0 +1,98 @@
+/* CSS files add styling rules to your content */
+
+body {
+  background: #FFFAF0;
+}
+
+.title {
+  position: absolute;
+  width: 1085px;
+  height: 143px;
+  left: calc(50% - 1085px/2 - 0.5px);
+  top: calc(50% - 143px/2 - 341.5px);
+
+}
+
+.tape {
+  position: absolute;
+  width: 584px;
+  height: 406px;
+  left: calc(50% - 584px/2);
+  top: calc(50% - 406px/2 + 28px);
+
+  z-index: 2;
+
+}
+
+.radiofront {
+  position: absolute;
+  width: 1666px;
+  height: 181px;
+  left: calc(50% - 1666px/2);
+  top: calc(50% - 181px/2 + 369.5px);
+
+  z-index: 4;
+
+
+}
+
+.radioback {
+  position: absolute;
+  width: 1666px;
+  height: 537px;
+  left: calc(50% - 1666px/2 - 1px);
+  top: calc(50% - 537px/2 + 56px);
+
+  z-index: 1;
+
+
+
+}
+
+.orangeextend {
+  position: absolute;
+  width: 1666px;
+  height: 100%;
+  left: calc(50% - 1666px/2);
+  top: calc(50% - 136px/2 + 392px);
+
+  z-index: 3;
+
+  background: #F26738;
+}
+
+input[type="range"] {
+   transform: rotate(270deg);
+}
+
+.slider {
+  -webkit-appearance: none;
+  outline: none;
+  position: absolute;
+  width: 1100px;
+  height: 1px;
+  top: calc(50% + 250px);
+  left: calc(50% - 552px);
+  background-color: transparent;
+  z-index: 2;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 584px;
+  height: 406px;
+  background: url(https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FCassette.gif?v=1591399606563);
+  background-size: cover;
+  transform: rotate(90deg);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.slider::-moz-range-thumb {
+  width: 100px;
+  height: 100px;
+  background: url(https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FCassette.gif?v=1591399606563);
+  cursor: pointer;
+  z-index: 2;
+}
