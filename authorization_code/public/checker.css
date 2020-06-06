@@ -225,3 +225,33 @@ input[type="range"][class="slider"] {
     transform: translateY(-100%) rotate(500deg);
   }
 }
+
+.vchecked{
+  position: absolute;
+  width: 398px;
+  height: 160px;
+  left: calc(50% - 398px/2 + 13px);
+  top: calc(50% - 160px/2 + 33px);
+  z-index: 2;
+}
+
+.vmove{
+  position: absolute;
+  width: 398px;
+  height: 160px;
+  left: calc(50% - 398px/2 + 13px);
+  top: calc(50% - 160px/2 + 33px);
+  z-index: 2;
+  animation: moveup 2s ease-in-out forwards;
+}
+
+@keyframes moveup {
+  0% {
+    left: calc(50% - 398px/2 + 13px);
+    top: calc(50% - 160px/2 + 33px);
+  }
+  100% {
+    left: calc(50% - 398px/2 + 13px);
+    top: calc(50% - 160px/2 - 300px);
+  }
+}

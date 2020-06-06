@@ -28,19 +28,37 @@
     <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2Fcheckerfront1.png?v=1591475595294" class="radiofront">
     <input orient="vertical" type="range" min="1" max="100" value="100" id="check-slider" class="slider" oninput="return runMyFunction1();">
 
+    <input type="range" min="1" max="100" value="50" class="vslider" id="vslider" oninput="return valuesaver();">
+
     <script>
+        var slider_value= -1;
+        var vslider = document.getElementById("vslider");
+        function valuesaver() {
+          slider_value = vslider.value;
+          console.log(slider_value);
+          return true;
+        }
+
+        function checked(){
+          setTimeout( function(){
+            var checked = document.getElementById("vchecked");
+            checked.classList.add("vmove");
+            console.log("YOINKS");
+          }, 5500);
+        }
+
         function runMyFunction1() {
           var check_slider = document.getElementById("check-slider");
           var box1 = document.getElementById("box1");
           if(check_slider.value <= 20){
             console.log("AHHHH");
             box1.classList.add("box");
+            checked();
           }
           return true;
         }
-      </script>
-
-    <input type="range" min="1" max="100" value="50" class="vslider">
+    </script>
+    <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FVIBE%20CHECKED.png?v=1591482394013" class="vchecked" id="vchecked">
     <p class="lax">LAX</p>
     <p class="strict">STRICT</p>
     <p class="vibemeter">VIBE METER</p>
