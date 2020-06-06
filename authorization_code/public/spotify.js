@@ -63,7 +63,7 @@ if (error) {
            
             var playlist_url = playlists.items[0].href;
             $.ajax({
-                url:playlist_url, 
+                url: playlist_url, 
                 headers: {
                     'Authorization': 'Bearer ' + access_token
                 },
@@ -71,6 +71,19 @@ if (error) {
                     console.log("playlist: " + playlist.name);
                     playlist.tracks.items.forEach(function(track){
                         console.log(track.track.name);
+
+                        $.ajax({
+                            url: 'https://api.spotify.com/v1/tracks/' + track.track.id, 
+                            headers: {
+                                'Authorization': 'Bearer ' + access_token
+                            },
+                            success: function(track) {
+                                
+                                // console.log(track.danceability);
+
+                            }
+                        },)	
+
                     });
                 }
             },)	
