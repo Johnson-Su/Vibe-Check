@@ -94,7 +94,6 @@ if (error) {
                                 'Authorization': 'Bearer ' + access_token
                             },
                             success: function(track) {
-<<<<<<< HEAD
                                 // given a track object, return the uri and audio features
 
                                 $.ajax({
@@ -108,9 +107,8 @@ if (error) {
                                         console.log(audio_features);
                                     }
                                 },)
-=======
                                 // console.log(track.danceability);
->>>>>>> 43db13af082a4c0675cc186bc21c18d6a309a749
+
 
                             }
                         },)
