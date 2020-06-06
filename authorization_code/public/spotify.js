@@ -14,9 +14,9 @@ function getHashParams() {
     return hashParams;
 }
 
-var userProfileSource = document.getElementById('user-profile-template').innerHTML,
-    userProfileTemplate = Handlebars.compile(userProfileSource),
-    userProfilePlaceholder = document.getElementById('user-profile');
+// var userProfileSource = document.getElementById('user-profile-template').innerHTML,
+//     userProfileTemplate = Handlebars.compile(userProfileSource),
+//     userProfilePlaceholder = document.getElementById('user-profile');
 
 
 var params = getHashParams();
@@ -25,8 +25,6 @@ var access_token = params.access_token,
     refresh_token = params.refresh_token,
     test = params.test,
     error = params.error;
-
-document.getElementById("playlist-name").innerHTML = test;
 
 if (error) {
     alert('There was an error during the authentication');
@@ -78,7 +76,6 @@ if (error) {
                                 'Authorization': 'Bearer ' + access_token
                             },
                             success: function(track) {
-
                                 // console.log(track.danceability);
 
                             }
@@ -102,24 +99,6 @@ if (error) {
         $('#login').show();
         $('#loggedin').hide();
     }
-
-
-    // accessing playlists
-    document.getElementById('get-playlists').addEventListener('click', function() {
-    $.ajax({
-        url: 'https://api.spotify.com/v1/me/playlists',
-        headers: {
-        'Authorization': 'Bearer ' + access_token
-        },
-        success: function(response) {
-        console.log("playlists button clicked");
-        playlistsPlaceholder.innerHTML = playlistsTemplate(response);
-
-        $('#login').hide();
-        $('#loggedin').show();
-        }
-    });
-    }, false);
 
 
 }

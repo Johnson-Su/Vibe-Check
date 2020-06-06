@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="landing.css">
 
     <!-- import the webpage's javascript file -->
-    <script src="/script.js" defer></script>
+    <script src="app.js" defer></script>
   </head>
 
 
@@ -28,16 +28,24 @@
     <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FRadio%20Front.png?v=1591399819762" class="radiofront">
      <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FRadioBack.png?v=1591400011590" class="radioback">
     <div class="orangeextend"></div>
-    <input orient="vertical" type="range" min="1" max="100" value="100" class="slider">
+    <input orient="vertical" type="range" min="1" max="100" value="100" class="slider" id="slider">
+    <script>
+      var slider = document.getElementById("slider");
 
+      slider.oninput = function() {
+        if(this.value <= 20){
+          console.log("slider in");
+          window.location.href = "/login";
+        }
+      }
+    </script>
 
     <!-- include the Glitch button to show what the webpage is about and
           to make it easier for folks to view source and remix -->
     <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
     <script src="https://button.glitch.me/button.js" defer></script>
+    <script src="/spotify.js" defer></script>
   </body>
-
-
 
 
 </html>

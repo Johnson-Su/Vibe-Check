@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html>
   <head>
     <title>Example of the Authorization Code flow with Spotify</title>
@@ -20,9 +20,19 @@
   <body>
     <div class="container">
       <div id="login">
-        <h1>This is an example of the Authorization Code flow</h1>
-        <a href="/login" class="btn btn-primary">Log in with Spotify</a>
+        <h1>This is an example of the Authorization Code flow 93874978</h1>
+        <a class="btn btn-primary" onclick="return runMyFunction();">Log in with Spotify</a>
+        <script>
+          function runMyFunction() {
+            var slider = document.getElementById("butt");
+              window.location.href="/login" ;
+            return true;
+          }
+        </script>
       </div>
+
+
+
       <div id="loggedin">
         <div id="user-profile">
         </div>
@@ -36,35 +46,73 @@
       </div>
     </div>
 
-    <script id="user-profile-template" type="text/x-handlebars-template">
-      <h1>Logged in as {{display_name}}</h1>
-      <div class="media">
-        <div class="pull-left">
-          <img class="media-object" width="150" src="{{images.0.url}}" />
-        </div>
-        <div class="media-body">
-          <dl class="dl-horizontal">
-            <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
-            <dt>Id</dt><dd>{{id}}</dd>
-            <dt>Email</dt><dd>{{email}}</dd>
-            <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
-            <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
-            <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
-            <dt>Country</dt><dd>{{country}}</dd>
-          </dl>
-        </div>
-      </div>
-    </script>
-
-    <script id="get-playlists-template" type="text/x-handlebars-template">
-      <h2>Playlists</h2>
-      <button id="get-lists">Get playlists</button>
-      <p>{{name}}</p>
-    </script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="/spotify.js"></script>
   </body>
-</html>
+</html>   -->
 
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Landing page</title>
+
+    <link rel="stylesheet" href="landing.css">
+
+    <script src="app.js" defer></script>
+  </head>
+
+  <body>
+
+    <div id="login">
+      <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FVibe%20Check.png?v=1591399062962" class="title">
+      <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FRadio%20Front.png?v=1591399819762" class="radiofront">
+      <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FRadioBack.png?v=1591400011590" class="radioback">
+      <div class="orangeextend"></div>
+      <input orient="vertical" type="range" min="1" max="100" value="100" class="slider" id="slider" oninput="return runMyFunction();">
+      <script>
+          function runMyFunction() {
+            var slider = document.getElementById("slider");
+            if(slider.value <= 20){
+              window.location.href="/login" ;
+            }
+            return true;
+          }
+        </script>
+
+      <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+      <script src="https://button.glitch.me/button.js" defer></script>
+    </div>
+
+    <div id="loggedin">
+        <div id="user-profile">
+        </div>
+        <div id="oauth"></div>
+        <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
+        <div id="playlists">
+          <h1>Playlists</h1>
+          <p id="playlist-name">placeholder</p>
+          <button class="btn btn-default" id="get-playlists=">Get Playlists</button>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="/spotify.js" defer></script>
+  </body>
+
+
+</html>
