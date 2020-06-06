@@ -82,7 +82,7 @@ if (error) {
                         valence: { mean: 0, stdev: 0 },
                         tempo: { mean: 0, stdev: 0 },
                         count: 0,
-                        track_data: new Array(),
+                        track_data: [],
                         filtered_uris: ""
                     };
                     console.log(playlist_data);
@@ -120,16 +120,19 @@ if (error) {
                         function sum_means(){
                             console.log('called sum_means for ' + playlist.track_data.length + ' items');
                             console.log(playlist.track_data);
-                            for(track in playlist.track_data){
-                                console.log('logged a track');
-                                console.log(track.acousticness);
-                                playlist.acousticness.mean += track.acousticness;
-                                playlist.danceability.mean += track.danceability;
-                                playlist.energy.mean += track.energy;
-                                playlist.loudness.mean += track.loudness;
-                                playlist.speechiness.mean += track.speechiness;
-                                playlist.valence.mean += track.valence;
-                                playlist.tempo.mean += track.tempo;
+                            
+                            for(var i = 0; i < playlist.track_data.length; i++){
+                                console.log(playlist.track_data.length);
+                                console.log('compiled a track at index ' + i);
+                                //console.log(track.acousticness);
+                                console.log(playlist.track_data[i].acousticness);
+                                playlist.acousticness.mean += playlist.track_data[i].acousticness;
+                                playlist.danceability.mean += playlist.track_data[i].danceability;
+                                playlist.energy.mean += playlist.track_data[i].energy;
+                                playlist.loudness.mean += playlist.track_data[i].loudness;
+                                playlist.speechiness.mean += playlist.track_data[i].speechiness;
+                                playlist.valence.mean += playlist.track_data[i].valence;
+                                playlist.tempo.mean += playlist.track_data[i].tempo;
                             }
                             console.log(playlist);
                         }//sum_means
@@ -144,19 +147,25 @@ if (error) {
                             playlist.valence.mean /= playlist.count;
                             playlist.tempo.mean /= playlist.count;
                             console.log("Acousticness: " + playlist.acousticness.mean);
+                            console.log("Danceability: " + playlist.danceability.mean);
                         }//div_means
 
                         function sum_stdevs(){
                             console.log('called sum_stdevs');
-                            for(track in playlist.track_data){
-                                playlist.acousticness.stdev += (track.acousticness - playlist.acousticness.mean)^2;
-                                playlist.danceability.stdev += (track.danceability - playlist.danceability.mean)^2;
-                                playlist.energy.stdev += (track.energy - playlist.energy.mean)^2;
-                                playlist.loudness.stdev += (track.loudness - playlist.loudness.mean)^2;
-                                playlist.speechiness.stdev += (track.speechiness - playlist.speechiness.mean)^2;
-                                playlist.valence.stdev += (track.valence - playlist.valence.mean)^2;
-                                playlist.tempo.stdev += (track.tempo - playlist.tempo.mean)^2;
+                            for(var i = 0; i < playlist.track_data.length; i++){
+                                playlist.acousticness.stdev += (playlist.track_data[i].acousticness - playlist.acousticness.mean)**2;
+                                playlist.danceability.stdev += (playlist.track_data[i].danceability - playlist.danceability.mean)**2;
+                                playlist.energy.stdev += (playlist.track_data[i].energy - playlist.energy.mean)**2;
+                                playlist.loudness.stdev += (playlist.track_data[i].loudness - playlist.loudness.mean)**2;
+                                playlist.speechiness.stdev += (playlist.track_data[i].speechiness - playlist.speechiness.mean)**2;
+                                playlist.valence.stdev += (playlist.track_data[i].valence - playlist.valence.mean)**2;
+                                playlist.tempo.stdev += (playlist.track_data[i].tempo - playlist.tempo.mean)**2;
+                                console.log("Acousticness: " + playlist.acousticness.stdev);
+                                console.log("Danceability: " + playlist.danceability.stdev);
+                                console.log((playlist.track_data[i].acousticness - playlist.acousticness.mean)**2);
+                                console.log((playlist.track_data[i].danceability - playlist.danceability.mean)**2);
                             }
+                            
                         }//sum_stdevs
 
                         function calc_stdevs(){
@@ -176,7 +185,7 @@ if (error) {
                         div_means();
                         sum_stdevs();
                         calc_stdevs();
-                        console.log("Compiled Playlist Data");
+                        console.log("Compiled Playlist Data. Logging playlist:");
                         console.log(playlist);
                     }//compile the playlists information
 
