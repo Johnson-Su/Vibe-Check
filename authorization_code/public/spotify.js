@@ -107,6 +107,9 @@ if (error) {
                                 $('#vibe-checker').show();
 
                                 console.log("playlist: " + playlist.name);
+                                link = playlist.href.split("/");
+                                link = "https://open.spotify.com/embed/playlist/" + link[link.length - 1]
+                                document.getElementById("show-playlist").src = link;
                                 playlist.tracks.items.forEach(function(track){
                                     // console.log(track.track.name);
 

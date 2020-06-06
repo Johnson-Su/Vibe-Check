@@ -61,8 +61,12 @@ body {
   background: #F26738;
 }
 
-input[type="range"] {
-   transform: rotate(270deg);
+input[type="range"][class="check-slider"]{
+  transform: rotate(270deg);
+}
+
+input[type="range"][class="vslider"]{
+  transform: rotate(0deg);
 }
 
 .slider {
