@@ -1,4 +1,7 @@
 /* CSS files add styling rules to your content */
+#login, #loggedin {
+  display: none;
+}
 
 body {
   background: #FFFAF0;
