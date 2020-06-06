@@ -62,11 +62,11 @@ body {
 }
 
 input[type="range"][class="check-slider"]{
-  transform: rotate(270deg);
+   transform: rotate(270deg);
 }
 
 input[type="range"][class="vslider"]{
-  transform: rotate(0deg);
+   transform: rotate(0deg);
 }
 
 .slider {
@@ -263,7 +263,7 @@ input[type="range"][class="slider"] {
   top: calc(50% - 11.96px/2 + 348.14px);
   border-radius: 5px;
   background: #FFFFFF;
-  transform: rotate(120deg);
+  transform: rotate(90deg);
   z-index: 4;
 }
 
