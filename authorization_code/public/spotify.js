@@ -63,24 +63,56 @@ if (error) {
 
     // ************* vibe check stuff ***************
             // set playlist names to cassettes
-            for(index = 0; index < 6; index++){
-                document.getElementById("playlist" + (index + 1)).innerHTML = playlists.items[index].name;
-
+            var num=0;
+            var num1=0;
+            for(index = 0; index < playlists.items.length; index++){
+              console.log("Playlists ammount=" + playlists.items.length);
+              var table = document.getElementById("myTable");
+              console.log("GIANT YEET");
+              if(index%2==0){
+                var row = table.insertRow(-1);
+                var cell1 = row.insertCell(0);
+                cell1.innerHTML = playlists.items[index].name;
+                if(num%3==0){
+                    cell1.className = 'orange';
+                }
+                if(num%3==1){
+                    cell1.className = 'white';
+                }
+                if(num%3==2){
+                    cell1.className = 'yellow';
+                }
+                num++;
+              }
+              else{
+                var cell2 = row.insertCell(1);
+                cell2.innerHTML = playlists.items[index].name;
+                if(num1%3==0){
+                    cell2.className = 'black';
+                }
+                if(num1%3==1){
+                    cell2.className = 'yellow';
+                }
+                if(num1%3==2){
+                    cell2.className = 'blue';
+                }
+                num1++;
+              }
             }
-            
-                
+
+
                 var all_playlists = document.getElementsByClassName("playlist");
                 console.log(all_playlists.length)
 
                 for(j = 0; j < all_playlists.length; j++){
                     playlist_id = all_playlists[j].id;
-                    document.getElementById(all_playlists[j].id).addEventListener('click', 
+                    document.getElementById(all_playlists[j].id).addEventListener('click',
                         function(){
                             checkPlaylist(playlist_id)
                         });
                 }
-                    
-                
+
+
                 function checkPlaylist(playlist_id){
                     // console.log(playlist_number);
                     $.ajax({
@@ -106,11 +138,11 @@ if (error) {
 
                             });
                         }
-                    },) 
+                    },)
                 }
         // ********** vibe check stuff ************
 
-            
+
             var array_size = playlists.items.length;
             console.log("Number of Playlists: " + array_size);
             console.log("Try getting first playlist")
@@ -144,7 +176,7 @@ if (error) {
                     playlist.compile = function() {
                         //access https://api.spotify.com/v1/playlists/{playlist_id}/tracks and iterate through tracks
                         playlist.count = playlist.track_data.length;
-                        
+
                         function clear_data(){
                             console.log('Clear the data');
                             playlist.acousticness.mean = 0;
@@ -170,7 +202,7 @@ if (error) {
                         function sum_means(){
                             console.log('called sum_means for ' + playlist.track_data.length + ' items');
                             console.log(playlist.track_data);
-                            
+
                             for(var i = 0; i < playlist.track_data.length; i++){
                                 console.log(playlist.track_data.length);
                                 console.log('compiled a track at index ' + i);
@@ -215,7 +247,7 @@ if (error) {
                                 console.log((playlist.track_data[i].acousticness - playlist.acousticness.mean)**2);
                                 console.log((playlist.track_data[i].danceability - playlist.danceability.mean)**2);
                             }
-                            
+
                         }//sum_stdevs
 
                         function calc_stdevs(){
@@ -239,7 +271,7 @@ if (error) {
                         console.log(playlist);
                     }//compile the playlists information
 
-                    /*Function to filter playlist tracks based off threshold from user input 
+                    /*Function to filter playlist tracks based off threshold from user input
                         filter_threshold runs from 0 to 1, 0 is not strict and 1 is strict
                         should ONLY be called after playlist.compile is called
                     */
@@ -257,7 +289,7 @@ if (error) {
                                 playlist.filtered_uris += track.uri + ",";
                             }
                         }
-                        playlist.filtered_uris 
+                        playlist.filtered_uris
                     }//filter
 
                     //Function to generate filtered playlist. Can only be called post-filter.
@@ -310,7 +342,7 @@ if (error) {
                                         'Authorization': 'Bearer ' + access_token
                                     },
                                     success: function(audio_features) {
-                                        // given a track object, return the uri and audio features                                        
+                                        // given a track object, return the uri and audio features
                                         console.log(playlist.track_data.push(audio_features));
                                         //console.log(audio_features);
                                         console.log(playlist.track_data.length + " and " + playlist.tracks.items.length);
