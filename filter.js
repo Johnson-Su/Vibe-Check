@@ -58,7 +58,7 @@ playlist.remove = function(track){ //probably need to fix this
 
 //filter_threshold runs from 0 to 1, 0 is not strict and 1 is strict
 playlist.filter = function(filter_threshold) {	
-	playlist.compile();r
+	playlist.compile();
 	playlist.filtered_uris = ""
 	//based off filter, remove tracks that are bad
 	for(track in tracks){
