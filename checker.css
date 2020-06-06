@@ -1,0 +1,57 @@
+body {
+  background: #FFFAF0;
+}
+
+.radio {
+  position: absolute;
+  width: 1022px;
+  height: 816px;
+  left: calc(50% - 1022px/2 + 13px);
+  top: calc(50% - 816px/2);
+  z-index: 1;
+}
+
+.radiofront {
+  position: absolute;
+  width: 1022px;
+  height: 572px;
+  left: calc(50% - 1022px/2 + 13px);
+  top: calc(50% - 572px/2 + 122px);
+  z-index: 3;
+}
+
+input[type="range"] {
+   transform: rotate(270deg);
+}
+
+.slider {
+  -webkit-appearance: none;
+  outline: none;
+  position: absolute;
+  width: 700px;
+  height: 1px;
+  top: calc(50% - 120px);
+  left: calc(50% - 340px);
+  background-color:transparent;
+  z-index: 2;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 364px;
+  height: 253px;
+  background: url(https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FCassette.gif?v=1591399606563);
+  background-size: cover;
+  transform: rotate(90deg);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.slider::-moz-range-thumb {
+  width: 100px;
+  height: 100px;
+  background: url(https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FCassette.gif?v=1591399606563);
+  cursor: pointer;
+  z-index: 2;
+}
