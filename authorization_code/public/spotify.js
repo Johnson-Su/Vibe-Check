@@ -373,7 +373,7 @@
                                 console.log("Guessing genre of playlist with following data:");
                                 console.log(data);
                                 console.log("Guess: " + guess);
-                                return Object.keys(potential_genres).reduce((a, b) => potential_genres[a] > potential_genres[b] ? a : b);
+                                return guess;
                             }//guess_genre
 
                             //populate track_data once so we don't make a million API calls
@@ -381,7 +381,6 @@
                                 console.log(playlist_track.track.name);
                                 // given a track object, return the uri and audio features
                                 playlist.track_ids.push(playlist_track.track.id);
-                                console.log(playlist.track_ids);
                                 if(playlist.track_ids.length === playlist.tracks.items.length){
                                     $.ajax({
                                         url: 'https://api.spotify.com/v1/audio-features',
@@ -406,7 +405,6 @@
                                         },//success
                                     },)//ajax call to get audio features of a playlist
                                 }//once all have been loaded
-
                             });//foreach to get all audio features from each song
                         }//success
                     });//ajax call
