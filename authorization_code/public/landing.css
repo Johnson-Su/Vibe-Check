@@ -1,5 +1,5 @@
 /* CSS files add styling rules to your content */
-#login, #loggedin, #vibe-checker, #checkhide{
+#login, #loggedin, #vibe-checker, #checkhide, #showgenre{
   display: none;
 }
 
@@ -875,4 +875,36 @@ input[type="range"][class="slider"] {
   letter-spacing: 0.05em;
 
   color: #FFFFFF;
+}
+
+.genre_guess{
+  position: absolute;
+  width: 1000px;
+  height: 57px;
+  left: calc(50% - 485px);
+  top: calc(50% - 57px/2 - 75.5px);
+
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 57px;
+  /* identical to box height */
+  z-index: 10;
+
+  text-align: center;
+  letter-spacing: 0.05em;
+
+  color: #FFFFFF;
+}
+
+.coverinsert2{
+  position: absolute;
+  width: 1022px;
+  height: 79px;
+  left: calc(50% - 1022px/2 + 13px);
+  top: calc(50% - 79px/2 - 47.5px);
+  z-index: 9;
+
+  background: #F26738;
 }

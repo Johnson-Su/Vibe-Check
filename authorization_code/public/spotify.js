@@ -111,12 +111,20 @@
                                     link = "https://open.spotify.com/embed/playlist/" + link[link.length - 1]
                                     document.getElementById("show-playlist").src = link;
 
+                                    function delay_show(){
+                                      setTimeout( function(){
+                                        $('#checkhide').hide();
+                                        $('#showgenre').show();
+                                      }, 5800);
+                                    }
+
                                     var flag = 0;
                                     document.getElementById("check-slider").addEventListener('input',
                                         function(){
                                            if(this.value <= 20 && flag == 0){
                                                flag = 1;
                                                $('#checkhide').show();
+                                               delay_show();
                                                console.log(document.getElementById("vslider").value)
                                                 vibe_check(playlist.href, (100 - document.getElementById("vslider").value) / 33 + 0.2);
                                            }
@@ -127,16 +135,10 @@
                     }
 
             // ********** end playlist stuff ************
-<<<<<<< HEAD
 
             //Vibe Check Function. Pass a playlist api url to the function to generate a vibe-checked playlist.
                             function vibe_check(playlist_url, threshold){
 
-=======
-            //Vibe Check Function. Pass a playlist api url to the function to generate a vibe-checked playlist.
-                            function vibe_check(playlist_url, threshold){
-                                
->>>>>>> 2c26626ed4544a1b30ccdb29ce45117be66ebbdc
                                 //ajax call to access playlist
                                 $.ajax({
                                     url: playlist_url,
@@ -345,11 +347,10 @@
                                                 valence: playlist.valence.mean,                         //0: it's so saaad to 1: it's the best day ever
                                                 tempo: playlist.tempo.mean/250                              //0: 0 bpm fam to 1: 250 bpm like a madlad
                                             }
-                                            
                                             return audio_features;
                                             //return audio_features;
                                         }//get_audio_features
-                                        
+
                                         //funciton that returns the guess of the genre based off a trained neural net
                                         playlist.guess_genre = function(){
                                             playlist.compile();
