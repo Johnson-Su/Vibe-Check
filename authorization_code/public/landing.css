@@ -460,11 +460,12 @@ input[type="range"][class="slider"] {
 /* start bars */
 
 :root {
-  --fill-acoustic: 0px;
-  --fill-danceability: 0px;
-  --fill-energy: 0px;
-  --fill-loudness: 0px;
-  --fill-tempo: 0px;
+  --fill-acoustic: 12px;
+  --fill-danceability: 12px;
+  --fill-energy: 12px;
+  --fill-loudness: 12px;
+  --fill-tempo: 12px;
+  --fill-valence: 12px;
 }
 
 .acoustic-white{
@@ -497,7 +498,7 @@ input[type="range"][class="slider"] {
     width: 0px;
   }
   100% {
-    width: 276px;
+    width: var(--fill-acoustic);
   }
 }
 
@@ -523,15 +524,15 @@ input[type="range"][class="slider"] {
   background: #F26738;
   border-radius: 5px;
   z-index: 6;
-  animation: barfill 1.5s ease-in-out forwards;
+  animation: barfill-dance 1.5s ease-in-out forwards;
 }
 
-@keyframes barfill {
+@keyframes barfill-dance {
   0% {
     width: 0px;
   }
   100% {
-    width: 276px;
+    width: var(--fill-danceability);
   }
 }
 
@@ -557,15 +558,15 @@ input[type="range"][class="slider"] {
   background: #F26738;
   border-radius: 5px;
   z-index: 6;
-  animation: barfill 1.5s ease-in-out forwards;
+  animation: barfill-energy 1.5s ease-in-out forwards;
 }
 
-@keyframes barfill {
+@keyframes barfill-energy {
   0% {
     width: 0px;
   }
   100% {
-    width: 276px;
+    width: var(--fill-energy);
   }
 }
 
@@ -591,15 +592,15 @@ input[type="range"][class="slider"] {
   background: #F26738;
   border-radius: 5px;
   z-index: 6;
-  animation: barfill 1.5s ease-in-out forwards;
+  animation: barfill-loud 1.5s ease-in-out forwards;
 }
 
-@keyframes barfill {
+@keyframes barfill-loud {
   0% {
     width: 0px;
   }
   100% {
-    width: 276px;
+    width: var(--fill-loudness);
   }
 }
 
@@ -625,15 +626,15 @@ input[type="range"][class="slider"] {
   background: #F26738;
   border-radius: 5px;
   z-index: 6;
-  animation: barfill 1.5s ease-in-out forwards;
+  animation: barfill-tempo 1.5s ease-in-out forwards;
 }
 
-@keyframes barfill {
+@keyframes barfill-tempo {
   0% {
     width: 0px;
   }
   100% {
-    width: 276px;
+    width: var(--fill-tempo);
   }
 }
 
@@ -659,15 +660,15 @@ input[type="range"][class="slider"] {
   background: #F26738;
   border-radius: 5px;
   z-index: 6;
-  animation: barfill 1.5s ease-in-out forwards;
+  animation: barfill-valence 1.5s ease-in-out forwards;
 }
 
-@keyframes barfill {
+@keyframes barfill-valence {
   0% {
     width: 0px;
   }
   100% {
-    width: 276px;
+    width: var(--fill-valence);
   }
 }
 
