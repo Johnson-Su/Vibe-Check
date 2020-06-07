@@ -17,14 +17,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="app.js" defer></script>
     <script src="/spotify.js" defer></script>
+
   </head>
 
   <body>
 
     <div id="login">
-      <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FVibe%20Check.png?v=1591399062962" class="title">
-      <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FRadio%20Front.png?v=1591399819762" class="radiofront">
-      <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FRadioBack.png?v=1591400011590" class="radioback">
+      <img src="/Assets/Vibe Check.png" class="title">
+      <img src="/Assets/Radio Front.png" class="radiofront">
+      <img src="/Assets/RadioBack.png" class="radioback">
       <div class="orangeextend"></div>
       <input orient="vertical" type="range" min="1" max="100" value="100" class="slider" id="slider" oninput="return loginSlider();">
       <script>
@@ -43,8 +44,8 @@
 
 
     <div id="loggedin">
-      <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FPlayframe%201.png?v=1591424724953" class="playframe">
-      <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2Fvibelist.png?v=1591497643742" class="searchchunk">
+      <img src="/Assets/Playframe.png" class="playframe">
+      <img src="/Assets/vibelist.png" class="searchchunk">
       <div class="container">
         <table id="myTable" class="table"></table>
       </div>
@@ -54,8 +55,8 @@
     </div>
 
     <div id="vibe-checker">
-      <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2Fvibechecker.png?v=1591427001951" class="radio">
-      <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2Fcheckerfront1.png?v=1591475595294" class="check-radiofront">
+      <img src="/Assets/vibechecker.png" class="radio">
+      <img src="/Assets/checkerfront1.png" class="check-radiofront">
       <input type="range" min="1" max="100" value="100" id="check-slider" class="check-slider" oninput="return runMyFunction1();">
       <input type="range" min="1" max="100" value="50" class="vslider" id="vslider">
       <script>
@@ -79,7 +80,7 @@
           }
       </script>
 
-      <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FVIBE%20CHECKED.png?v=1591482394013" class="vchecked" id="vchecked">
+      <img src="/Assets/VIBE CHECKED.png" class="vchecked" id="vchecked">
       <p class="lax">LAX</p>
       <p class="strict">STRICT</p>
       <p class="vibemeter">VIBE METER</p>
@@ -91,6 +92,10 @@
       </div>
 
       <div class="cover"></div>
+
+      <div>
+      <p class="transi"></p>
+      </div>
 
       <div class="acoustic-white"></div>
       <div class="dancebility-white"></div>
@@ -104,6 +109,8 @@
       <div class="loudness"></div>
       <div class="tempo"></div>
       <div class="valence"></div>
+
+      <div class="coverinsert"></div>
 
       <p class="hoverbox">
         <br><b>ACOUSTICNESS</b><br>
@@ -143,6 +150,16 @@
         The closer to the "STRICT" side the closer the songs in the playlist must fit the overall "Vibe" of the playlist.<br>
         If the filter is near "LAX" then only songs dissimilar the the overall playlist genre are removed.<br>
       </p>
+
+      <div id="checkhide">
+        <p class="computing">ACTIVATING NEURAL NETWORK...</p>
+        <div class="coverinsert1"></div>
+      </div>
+
+      <div id="showgenre">
+        <p class="genre_guess">YOUR PLAYLIST GENRE IS CLOSEST TO: </p>
+        <div class="coverinsert2"></div>
+      </div>
 
     </div>
 
