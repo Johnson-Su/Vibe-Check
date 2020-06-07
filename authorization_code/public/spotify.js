@@ -119,6 +119,19 @@
                                       }, 5800);
                                     }
 
+                                    function delay_breakdown(){
+                                      setTimeout( function(){
+                                        let audio_features = get_audio_features();
+                                        console.log(audio_features);
+                                        document.documentElement.style.setProperty('--fill-acoustic', String(audio_features.acousticness*276) + 'px');
+                                        document.documentElement.style.setProperty('--fill-danceability', String(audio_features.danceability*276) + 'px');
+                                        document.documentElement.style.setProperty('--fill-energy', String(audio_features.energy*276) + 'px');
+                                        document.documentElement.style.setProperty('--fill-loudness', String(audio_features.loudness*276) + 'px');
+                                        document.documentElement.style.setProperty('--fill-tempo', String(audio_features.tempo*276) + 'px');
+                                        document.documentElement.style.setProperty('--fill-valence', String(audio_features.valence*276) + 'px');
+                                      }, 2800);
+                                    }
+                                    delay_breakdown();
                                     var flag = 0;
                                     document.getElementById("check-slider").addEventListener('input',
                                         function(){
