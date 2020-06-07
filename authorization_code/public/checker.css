@@ -255,3 +255,75 @@ input[type="range"][class="slider"] {
     top: calc(50% - 160px/2 - 300px);
   }
 }
+
+.acoustic{
+  position: absolute;
+  width: 276px;
+  height: 13px;
+  left: calc(50% - 276px/2 + 151px);
+  top: calc(50% - 13px/2 + 83.5px);
+
+  background: #FFFFFF;
+  border-radius: 5px;
+  z-index: 5;
+}
+
+.dancebility{
+  position: absolute;
+  width: 276px;
+  height: 13px;
+  left: calc(50% - 276px/2 + 151px);
+  top: calc(50% - 13px/2 + 111.5px);
+
+  background: #FFFFFF;
+  border-radius: 5px;
+  z-index: 5;
+}
+
+.energy{
+  position: absolute;
+  width: 276px;
+  height: 13px;
+  left: calc(50% - 276px/2 + 151px);
+  top: calc(50% - 13px/2 + 111.5px + 28px);
+
+  background: #FFFFFF;
+  border-radius: 5px;
+  z-index: 5;
+}
+
+.loudness{
+  position: absolute;
+  width: 276px;
+  height: 13px;
+  left: calc(50% - 276px/2 + 151px);
+  top: calc(50% - 13px/2 + 111.5px + 56px);
+
+  background: #FFFFFF;
+  border-radius: 5px;
+  z-index: 5;
+}
+
+.tempo{
+  position: absolute;
+  width: 276px;
+  height: 13px;
+  left: calc(50% - 276px/2 + 151px);
+  top: calc(50% - 13px/2 + 111.5px + 84px);
+
+  background: #FFFFFF;
+  border-radius: 5px;
+  z-index: 5;
+}
+
+.valence{
+  position: absolute;
+  width: 276px;
+  height: 13px;
+  left: calc(50% - 276px/2 + 151px);
+  top: calc(50% - 13px/2 + 111.5px + 112px);
+
+  background: #FFFFFF;
+  border-radius: 5px;
+  z-index: 5;
+}
