@@ -344,6 +344,18 @@ if (error) {
                                         //return audio_features;
                                     }//get_audio_features
 
+                                    //funciton that returns the guess of the genre based off a trained neural net
+                                    playlist.guess_genre = function(){
+                                        playlist.compile();
+                                        return trainedNN({
+                                            danceability: playlist.danceability.mean,
+                                            acousticness: playlist.acousticness.mean,
+                                            energy: playlist.energy.mean,
+                                            instrumentalness: playlist.instrumentalness.mean,
+                                            valence: playlist.valence.mean
+                                        });
+
+                                    }//guess_genre
                                     //populate track_data once so we don't make a million API calls
                                     playlist.tracks.items.forEach(function(playlist_track){
                                         console.log(playlist_track.track.name);
@@ -366,9 +378,10 @@ if (error) {
                                                         //console.log(audio_features);
                                                         console.log(playlist.track_data.length + " and " + playlist.tracks.items.length);
                                                         if(playlist.track_data.length === playlist.tracks.items.length){
-                                                            playlist.compile();
-                                                            playlist.generateFilteredPlaylist(playlist.name, threshold);
-                                                            console.log(playlist.get_audio_features());
+                                                            //playlist.compile();
+                                                            //playlist.generateFilteredPlaylist(playlist.name, threshold);
+                                                            //console.log(playlist.get_audio_features());
+                                                            console.log(playlist.guess_genre());
                                                         }//once completely loaded, now can check vibes
                                                     },//success
                                                 },)//ajax call to get audio features of a playlist
