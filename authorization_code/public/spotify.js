@@ -319,6 +319,7 @@
                                                         type: 'POST',
                                                         success: function(snapshot) {
                                                             console.log("Looks like we got it in!" + snapshot.snapshot_id);
+                                                            document.getElementById("show-playlist").src = "https://open.spotify.com/embed/playlist/" + new_playlist.id;
                                                         }//success
                                                     },);//ajax call to populate playlist
                                                 }//success
