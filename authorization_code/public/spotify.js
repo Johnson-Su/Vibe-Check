@@ -448,7 +448,7 @@ if (error) {
                                                         var flag = 0;
                                                         document.getElementById("check-slider").addEventListener('input',
                                                             function(){
-                                                            if(this.value <= 20 ){
+                                                            if(this.value <= 20 && flag == 0){
                                                                 flag = 1;
                                                                 console.log(document.getElementById("vslider").value)
                                                                     // vibe_check(playlist.href, document.getElementById("vslider").value);
