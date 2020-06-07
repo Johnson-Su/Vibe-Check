@@ -882,12 +882,12 @@ input[type="range"][class="slider"] {
   width: 1000px;
   height: 57px;
   left: calc(50% - 485px);
-  top: calc(50% - 57px/2 - 75.5px);
+  top: calc(50% - 57px/2 - 85.5px);
 
   font-family: Rubik;
   font-style: normal;
   font-weight: bold;
-  font-size: 32px;
+  font-size: 28px;
   line-height: 57px;
   /* identical to box height */
   z-index: 10;
@@ -936,6 +936,23 @@ input[type="range"][class="slider"] {
   border-color: #2A2F3D;
   z-index: 11;
   font-size: 24px;
+  color: white;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: medium;
+  line-height: 20px;
+  text-align: center;
+}
+
+.hoverformore{
+  position: absolute;
+  width: 1022px;
+  height: 79px;
+  left: calc(50% - 1022px/2 + 13px);
+  top: calc(50% - 79px/2 - 20.5px);
+  z-index: 11;
+  background: transparent;
+  font-size: 20px;
   color: white;
   font-family: Rubik;
   font-style: normal;
