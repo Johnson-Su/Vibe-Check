@@ -312,11 +312,26 @@ if (error) {
                                                     type: 'POST',
                                                     success: function(snapshot) {
                                                         console.log("Looks like we got it in!" + snapshot.snapshot_id);
-                                                    }
+                                                    }//success
                                                 },);//ajax call to populate playlist
-                                            }
+                                            }//success
                                         },);//ajax call to create playlist
                                     }//generateFilteredPlaylist
+
+                                    //function that returns a dictionary of mean audio features
+                                    playlist.get_audio_features = function(){
+                                        const audio_features = {
+                                            acousticness: playlist.acousticness.mean,                //0: not acoustic to 1: acoustic
+                                            danceability: playlist.danceability.mean,               //0: not danceable to 1: most danceable
+                                            energy: playlist.energy.mean,                           //0: not energetic to 1: uber high energy
+                                            loudness: Math.max(0,(playlist.loudness.mean + 60)/60), //0: not loud to 1: uber loud
+                                            speechiness: playlist.speechiness.mean,                 //0: words? what words? to 1: welcome to my podcast
+                                            valence: playlist.valence.mean,                         //0: it's so saaad to 1: it's the best day ever
+                                            tempo: playlist.tempo.mean/250                              //0: 0 bpm fam to 1: 250 bpm like a madlad
+                                        }
+                                        return audio_features;
+                                        //return audio_features;
+                                    }//get_audio_features
 
                                     //populate track_data once so we don't make a million API calls
                                     playlist.tracks.items.forEach(function(playlist_track){
@@ -342,6 +357,7 @@ if (error) {
                                                         if(playlist.track_data.length === playlist.tracks.items.length){
                                                             playlist.compile();
                                                             playlist.generateFilteredPlaylist(playlist.name, threshold);
+                                                            console.log(playlist.get_audio_features());
                                                         }//once completely loaded, now can check vibes
                                                     },//success
                                                 },)//ajax call to get audio features of a playlist
