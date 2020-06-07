@@ -44,26 +44,38 @@
       <div class="container">
         <table id="myTable" class="table"></table>
       </div>
+
+      <input type="text" id="searchbar">
+      <button id="search-test">Search</button>
     </div>
 
     <div id="vibe-checker">
       <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2Fvibechecker.png?v=1591427001951" class="radio">
       <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2Fcheckerfront1.png?v=1591475595294" class="check-radiofront">
-      <input type="range" min="1" max="100" value="100" id="check-slider" class="check-slider" oninput="return checkSlider();">
-
+      <input type="range" min="1" max="100" value="100" id="check-slider" class="check-slider" oninput="return runMyFunction1();">
+      <input type="range" min="1" max="100" value="50" class="vslider" id="vslider">
       <script>
-          function checkSlider() {
+          function checked(){
+            setTimeout( function(){
+              var checked = document.getElementById("vchecked");
+              checked.classList.add("vmove");
+              console.log("YOINKS");
+            }, 5000);
+          }
+  
+          function runMyFunction1() {
             var check_slider = document.getElementById("check-slider");
             var box1 = document.getElementById("box1");
             if(check_slider.value <= 20){
               console.log("AHHHH");
               box1.classList.add("box");
+              checked();
             }
             return true;
           }
-        </script>
+      </script>
 
-      <input orient="horizontal" type="range" min="1" max="100" value="50" class="vslider">
+      <img src="https://cdn.glitch.com/1ebcc3a1-e400-4a80-ad74-97444f4c0216%2FVIBE%20CHECKED.png?v=1591482394013" class="vchecked" id="vchecked">
       <p class="lax">LAX</p>
       <p class="strict">STRICT</p>
       <p class="vibemeter">VIBE METER</p>
@@ -75,8 +87,13 @@
       </div>
 
       <div class="cover"></div>
+      <div class="acoustic"></div>
+      <div class="dancebility"></div>
+      <div class="energy"></div>
+      <div class="loudness"></div>
+      <div class="tempo"></div>
+      <div class="valence"></div>
     </div>
-
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
