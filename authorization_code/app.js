@@ -15,7 +15,7 @@ var cookieParser = require('cookie-parser');
 
 var client_id = '588bd0b041f549ffb928821ddbe728ea'; // Your client id
 var client_secret = 'bda6a55e4b2c4dbfb388d03597a4ff9a'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+var redirect_uri = 'http://localhost:8888/callback' || 'https://vibe-check-htne.herokuapp.com/'; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
