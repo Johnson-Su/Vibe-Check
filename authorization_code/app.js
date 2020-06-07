@@ -15,7 +15,7 @@ var cookieParser = require('cookie-parser');
 
 var client_id = '588bd0b041f549ffb928821ddbe728ea'; // Your client id
 var client_secret = 'bda6a55e4b2c4dbfb388d03597a4ff9a'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback' || 'https://vibe-check-htne.herokuapp.com//<session_token>'; // Your redirect uri
+var redirect_uri = 'http://localhost:8888/callback' || 'https://vibe-check-htne.herokuapp.com/' + access_token; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
@@ -53,9 +53,8 @@ app.get('/login', function(req, res) {
         access_token: url.searchParams.get('access_token'),
         refresh_token: url.searchParams.get('refresh_token')
     }
-    //call any events
-    app.events();
-}
+    redirect_uri = 'https://vibe-check-htne.herokuapp.com/' + app.tokenInfo.refresh_token;
+  }
 
 
   // your application requests authorization
