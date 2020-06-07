@@ -15,7 +15,10 @@ var cookieParser = require('cookie-parser');
 
 var client_id = '588bd0b041f549ffb928821ddbe728ea'; // Your client id
 var client_secret = 'bda6a55e4b2c4dbfb388d03597a4ff9a'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback' || 'https://vibe-check-htne.herokuapp.com/' + access_token; // Your redirect uri
+var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+if(port_name == process.env.PORT){
+  redirect_uri = 'https://vibe-check-htne.herokuapp.com/';
+}
 
 /**
  * Generates a random string containing numbers and letters
@@ -151,3 +154,4 @@ app.get('/refresh_token', function(req, res) {
 
 console.log('Listening on 8888');
 app.listen(process.env.PORT || 8888);
+port_value = process.env.PORT;
