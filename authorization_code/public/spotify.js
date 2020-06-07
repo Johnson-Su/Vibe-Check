@@ -175,7 +175,7 @@
                                 valence: { mean: 0, stdev: 0 },
                                 tempo: { mean: 0, stdev: 0 },
                                 count: 0,
-                                track_data: [],
+                                track_ids: [],
                                 filtered_uris: []
                             };
 
@@ -380,23 +380,32 @@
                             playlist.tracks.items.forEach(function(playlist_track){
                                 console.log(playlist_track.track.name);
                                 // given a track object, return the uri and audio features
-                                $.ajax({
-                                    url: 'https://api.spotify.com/v1/audio-features/' + playlist_track.track.id,
-                                    headers: {
-                                        'Authorization': 'Bearer ' + access_token
-                                    },
-                                    success: function(audio_features) {
-                                        // given a track object, return the uri and audio features
-                                        console.log(playlist.track_data.push(audio_features));
-                                        //console.log(audio_features);
-                                        console.log(playlist.track_data.length + " and " + playlist.tracks.items.length);
-                                        if(playlist.track_data.length === playlist.tracks.items.length){
-                                            playlist.guess_genre(); // do not remove; this also compiles the playlist data
-                                            current_playlist = playlist;
-                                            console.log(current_playlist);
-                                        }//once completely loaded, now can check vibes
-                                    },//success
-                                },)//ajax call to get audio features of a playlist
+                                playlist.track_ids.push(playlist_track.track.id);
+                                console.log(playlist.track_ids);
+                                if(playlist.track_ids.length === playlist.tracks.items.length){
+                                    $.ajax({
+                                        url: 'https://api.spotify.com/v1/audio-features',
+                                        headers: {
+                                            'Authorization': 'Bearer ' + access_token
+                                        },
+                                        data: {
+                                            'ids': playlist.track_ids.toString()
+                                        },
+                                        success: function(audio_features) {
+                                            // given a track object, return the uri and audio feature
+                                            console.log(audio_features);
+                                            playlist.track_data = audio_features.audio_features;
+                                            console.log(playlist.track_data);
+                                            //console.log(audio_features);
+                                            console.log(playlist.track_data.length + " and " + playlist.tracks.items.length);
+                                            if(playlist.track_data.length === playlist.tracks.items.length){
+                                                playlist.guess_genre(); // do not remove; this also compiles the playlist data
+                                                current_playlist = playlist;
+                                                console.log(current_playlist);
+                                            }//once completely loaded, now can check vibes
+                                        },//success
+                                    },)//ajax call to get audio features of a playlist
+                                }//once all have been loaded
 
                             });//foreach to get all audio features from each song
                         }//success
@@ -490,6 +499,21 @@
                                                 link = playlist.href.split("/");
                                                 link = "https://open.spotify.com/embed/playlist/" + link[link.length - 1]
                                                 document.getElementById("show-playlist").src = link;
+
+                                                function delay_breakdown(){
+                                                  setTimeout( function(){
+                                                    let audio_features = get_audio_features();
+                                                    console.log(audio_features);
+                                                    document.documentElement.style.setProperty('--fill-acoustic', String(audio_features.acousticness*276) + 'px');
+                                                    document.documentElement.style.setProperty('--fill-danceability', String(audio_features.danceability*276) + 'px');
+                                                    document.documentElement.style.setProperty('--fill-energy', String(audio_features.energy*276) + 'px');
+                                                    document.documentElement.style.setProperty('--fill-loudness', String(audio_features.loudness*276) + 'px');
+                                                    document.documentElement.style.setProperty('--fill-tempo', String(audio_features.tempo*276) + 'px');
+                                                    document.documentElement.style.setProperty('--fill-valence', String(audio_features.valence*276) + 'px');
+                                                  }, 1800);
+                                                }
+
+                                                delay_breakdown();
 
                                                 var flag = 0;
                                                 document.getElementById("check-slider").addEventListener('input',
