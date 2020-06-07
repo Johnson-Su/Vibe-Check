@@ -15,7 +15,7 @@ var cookieParser = require('cookie-parser');
 
 var client_id = '588bd0b041f549ffb928821ddbe728ea'; // Your client id
 var client_secret = 'bda6a55e4b2c4dbfb388d03597a4ff9a'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback' || 'https://vibe-check-htne.herokuapp.com/'; // Your redirect uri
+var redirect_uri = 'http://localhost:8888/callback' || 'https://vibe-check-htne.herokuapp.com//<session_token>'; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
@@ -45,6 +45,19 @@ app.get('/login', function(req, res) {
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
   
+
+  if(location.search !== "") {
+    const url = new URL(location.href);
+    //Grab the info
+    app.tokenInfo = {
+        access_token: url.searchParams.get('access_token'),
+        refresh_token: url.searchParams.get('refresh_token')
+    }
+    //call any events
+    app.events();
+}
+
+
   // your application requests authorization
   var scope = 'user-read-private user-read-email user-read-private playlist-read-private playlist-modify-public playlist-modify-private';
   res.redirect('https://accounts.spotify.com/authorize?' +
