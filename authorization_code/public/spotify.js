@@ -129,7 +129,7 @@
                                         document.documentElement.style.setProperty('--fill-loudness', String(audio_features.loudness*276) + 'px');
                                         document.documentElement.style.setProperty('--fill-tempo', String(audio_features.tempo*276) + 'px');
                                         document.documentElement.style.setProperty('--fill-valence', String(audio_features.valence*276) + 'px');
-                                      }, 2800);
+                                      }, 1800);
                                     }
                                     delay_breakdown();
                                     var flag = 0;
