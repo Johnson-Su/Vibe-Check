@@ -44,17 +44,6 @@ app.get('/login', function(req, res) {
 
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
-  
-
-  if(location.search !== "") {
-    const url = new URL(location.href);
-    //Grab the info
-    app.tokenInfo = {
-        access_token: url.searchParams.get('access_token'),
-        refresh_token: url.searchParams.get('refresh_token')
-    }
-    redirect_uri = 'https://vibe-check-htne.herokuapp.com/' + app.tokenInfo.refresh_token;
-  }
 
 
   // your application requests authorization
