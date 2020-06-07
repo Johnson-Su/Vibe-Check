@@ -460,12 +460,12 @@ input[type="range"][class="slider"] {
 /* start bars */
 
 :root {
-  --fill-acoustic: 12px;
-  --fill-danceability: 12px;
-  --fill-energy: 12px;
-  --fill-loudness: 12px;
-  --fill-tempo: 12px;
-  --fill-valence: 12px;
+  --fill-acoustic: 1px;
+  --fill-danceability: 1px;
+  --fill-energy: 1px;
+  --fill-loudness: 1px;
+  --fill-tempo: 1px;
+  --fill-valence: 1px;
 }
 
 .acoustic-white{
@@ -490,7 +490,7 @@ input[type="range"][class="slider"] {
   background: #F26738;
   border-radius: 5px;
   z-index: 6;
-  animation: barfill-acoustic 1.5s ease-in-out forwards;
+  animation: barfill-acoustic 3s ease-in-out 2s forwards;
 }
 
 @keyframes barfill-acoustic {
@@ -516,7 +516,7 @@ input[type="range"][class="slider"] {
 
 .dancebility{
   position: absolute;
-  width: 276px;
+  width: 0px;
   height: 13px;
   left: calc(50% - 276px/2 + 151px);
   top: calc(50% - 13px/2 + 111.5px);
@@ -524,7 +524,7 @@ input[type="range"][class="slider"] {
   background: #F26738;
   border-radius: 5px;
   z-index: 6;
-  animation: barfill-dance 1.5s ease-in-out forwards;
+  animation: barfill-dance 3s ease-in-out 2s forwards;
 }
 
 @keyframes barfill-dance {
@@ -550,7 +550,7 @@ input[type="range"][class="slider"] {
 
 .energy{
   position: absolute;
-  width: 276px;
+  width: 0px;
   height: 13px;
   left: calc(50% - 276px/2 + 151px);
   top: calc(50% - 13px/2 + 111.5px + 28px);
@@ -558,7 +558,7 @@ input[type="range"][class="slider"] {
   background: #F26738;
   border-radius: 5px;
   z-index: 6;
-  animation: barfill-energy 1.5s ease-in-out forwards;
+  animation: barfill-energy 3s ease-in-out 2s forwards;
 }
 
 @keyframes barfill-energy {
@@ -584,7 +584,7 @@ input[type="range"][class="slider"] {
 
 .loudness{
   position: absolute;
-  width: 276px;
+  width: 0px;
   height: 13px;
   left: calc(50% - 276px/2 + 151px);
   top: calc(50% - 13px/2 + 111.5px + 56px);
@@ -592,7 +592,7 @@ input[type="range"][class="slider"] {
   background: #F26738;
   border-radius: 5px;
   z-index: 6;
-  animation: barfill-loud 1.5s ease-in-out forwards;
+  animation: barfill-loud 3s ease-in-out 2s forwards;
 }
 
 @keyframes barfill-loud {
@@ -618,7 +618,7 @@ input[type="range"][class="slider"] {
 
 .tempo{
   position: absolute;
-  width: 276px;
+  width: 0px;
   height: 13px;
   left: calc(50% - 276px/2 + 151px);
   top: calc(50% - 13px/2 + 111.5px + 84px);
@@ -626,7 +626,7 @@ input[type="range"][class="slider"] {
   background: #F26738;
   border-radius: 5px;
   z-index: 6;
-  animation: barfill-tempo 1.5s ease-in-out forwards;
+  animation: barfill-tempo 3s ease-in-out 2s forwards;
 }
 
 @keyframes barfill-tempo {
@@ -652,7 +652,7 @@ input[type="range"][class="slider"] {
 
 .valence{
   position: absolute;
-  width: 276px;
+  width: 0px;
   height: 13px;
   left: calc(50% - 276px/2 + 151px);
   top: calc(50% - 13px/2 + 111.5px + 112px);
@@ -660,7 +660,7 @@ input[type="range"][class="slider"] {
   background: #F26738;
   border-radius: 5px;
   z-index: 6;
-  animation: barfill-valence 1.5s ease-in-out forwards;
+  animation: barfill-valence 3s ease-in-out 2s forwards;
 }
 
 @keyframes barfill-valence {
