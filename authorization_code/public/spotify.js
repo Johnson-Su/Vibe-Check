@@ -25,9 +25,18 @@
         refresh_token = params.refresh_token,
         error = params.error;
     var AI_guess;
+    var guess_obj;
     function wait_guess(){
         setTimeout( function(){
           document.getElementById("guess").innerHTML=AI_guess;
+          console.log(guess_obj)
+          document.getElementById("guess_data1").innerHTML="Classical "+ (Math.round((parseFloat(guess_obj["CLASSICAL"])*100))) + "%";
+          document.getElementById("guess_data2").innerHTML="Country "+ (Math.round((parseFloat(guess_obj["COUNTRY"])*100))) + "%";
+          document.getElementById("guess_data3").innerHTML="EDM "+ (Math.round((parseFloat(guess_obj["EDM"])*100))) + "%";
+          document.getElementById("guess_data4").innerHTML="Lofi "+ (Math.round((parseFloat(guess_obj["LOFI"])*100))) + "%";
+          document.getElementById("guess_data5").innerHTML="Pop "+ (Math.round((parseFloat(guess_obj["POP"])*100))) + "%";
+          document.getElementById("guess_data6").innerHTML="Rap "+ (Math.round((parseFloat(guess_obj["RAP"])*100))) + "%";
+          document.getElementById("guess_data7").innerHTML="R&B "+ (Math.round((parseFloat(guess_obj["RnB"])*100))) + "%";
         }, 6000);
       }
       wait_guess();
@@ -376,6 +385,7 @@
                                     valence: playlist.valence.mean
                                 };
                                 let potential_genres = trainedNN(data);
+                                guess_obj = trainedNN(data);
                                 let guess = Object.keys(potential_genres).reduce((a, b) => potential_genres[a] > potential_genres[b] ? a : b);
                                 console.log("Guessing genre of playlist with following data:");
                                 console.log(data);
