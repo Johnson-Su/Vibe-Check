@@ -140,7 +140,7 @@ if (error) {
                                 },
                                 success: function(playlist) {
                                     console.log("Accessing playlist: " + playlist.name);
-                                    
+
                                     var playlist_data = {
                                         acousticness: { mean: 0, stdev: 0 },
                                         danceability: { mean: 0, stdev: 0 },
@@ -153,7 +153,7 @@ if (error) {
                                         track_data: [],
                                         filtered_uris: []
                                     };
-                                    
+
                                     //console.log(playlist_data);
                                     Object.assign(playlist, playlist_data)
                                     console.log("FINAL PLAYLIST OBJECT:");
@@ -266,7 +266,7 @@ if (error) {
                                         playlist.filtered_uris = []
                                         //based off filter, remove tracks that are bad
                                         for(var i = 0; i < playlist.track_data.length; i++){
-                                            if ((Math.abs(playlist.acousticness.mean - playlist.track_data[i].acousticness)/playlist.acousticness.stdev < filter_threshold) 
+                                            if ((Math.abs(playlist.acousticness.mean - playlist.track_data[i].acousticness)/playlist.acousticness.stdev < filter_threshold)
                                                 || (Math.abs(playlist.danceability.mean - playlist.track_data[i].danceability)/playlist.danceability.stdev < filter_threshold)
                                                 || (Math.abs(playlist.energy.mean - playlist.track_data[i].energy)/playlist.energy.stdev < filter_threshold)
                                                 || (Math.abs(playlist.loudness.mean - playlist.track_data[i].loudness)/playlist.loudness.stdev < filter_threshold)
@@ -459,3 +459,64 @@ if (error) {
 
 
 })();
+
+
+// MACHINE LEARNING PART WOOT WOOT//
+////////////////////////////////////
+//    ____          ____
+//   |oooo|        |oooo|
+//   |oooo| .----. |oooo|
+//   |Oooo|/\_||_/\|oooO|
+//   `----' / __ \ `----'
+//    ,/ |#|/\/__\/\|#| \,
+//   /  \|#|| |/\| ||#|/  \
+//  / \_/|_|| |/\| ||_|\_/ \
+// |_\/    o\=----=/o    \/_|
+// <_>      |=\__/=|      <_>
+// <_>      |------|      <_>
+// | |   ___|======|___   | |
+// //\\  / |O|======|O| \  //\\
+// |  |  | |O+------+O| |  |  |
+// |\/|  \_+/        \+_/  |\/|
+// \__/  _|||        |||_  \__/
+//        | ||        || |
+//       [==|]        [|==]
+//       [===]        [===]
+//        >_<          >_<
+//       || ||        || ||
+//       || ||        || ||
+//       || ||        || ||
+//       __|\_/|__    __|\_/|__
+//       /___n_n___\  /___n_n___\
+////////////////////////////////////
+const brain = require("brain.js")
+//brain.js trainedNN for 1k songs on the following:
+
+// fields to consider:
+// acousticness
+// danceability
+// energy
+// instumentalness
+// valence
+// tempo
+
+// music genres:
+// 1=EDM
+// 2=pop
+// 3=rap
+// 5=lofi
+// 6=country
+// 7=classical
+
+function trainedNN(input) {
+return {
+'LOFI':1/(1+1/Math.exp((-21.401443481445312+24.35832405090332*1/(1+1/Math.exp((-8.392271995544434+7.710432529449463*(input['danceability']||0)+4.483984470367432*(input['acousticness']||0)-17.352312088012695*(input['energy']||0)+12.887937545776367*(input['instrumentalness']||0)+4.8691792488098145*(input['valence']||0))))+16.992862701416016*1/(1+1/Math.exp((-2.5020105838775635+0.4075414538383484*(input['danceability']||0)+0.40179166197776794*(input['acousticness']||0)+0.8510603308677673*(input['energy']||0)+169.41151428222656*(input['instrumentalness']||0)-2.196516752243042*(input['valence']||0))))-23.76111602783203*1/(1+1/Math.exp((3.755976915359497-36.59063720703125*(input['danceability']||0)+14.076555252075195*(input['acousticness']||0)-16.976600646972656*(input['energy']||0)+3.229679584503174*(input['instrumentalness']||0)+8.240936279296875*(input['valence']||0))))))),
+'EDM':1/(1+1/Math.exp((-95.17872619628906-32.41843032836914*1/(1+1/Math.exp((-8.392271995544434+7.710432529449463*(input['danceability']||0)+4.483984470367432*(input['acousticness']||0)-17.352312088012695*(input['energy']||0)+12.887937545776367*(input['instrumentalness']||0)+4.8691792488098145*(input['valence']||0))))+95.63311767578125*1/(1+1/Math.exp((-2.5020105838775635+0.4075414538383484*(input['danceability']||0)+0.40179166197776794*(input['acousticness']||0)+0.8510603308677673*(input['energy']||0)+169.41151428222656*(input['instrumentalness']||0)-2.196516752243042*(input['valence']||0))))-26.20052146911621*1/(1+1/Math.exp((3.755976915359497-36.59063720703125*(input['danceability']||0)+14.076555252075195*(input['acousticness']||0)-16.976600646972656*(input['energy']||0)+3.229679584503174*(input['instrumentalness']||0)+8.240936279296875*(input['valence']||0))))))),
+'RAP':1/(1+1/Math.exp((-5.983826160430908+0.5373189449310303*1/(1+1/Math.exp((-8.392271995544434+7.710432529449463*(input['danceability']||0)+4.483984470367432*(input['acousticness']||0)-17.352312088012695*(input['energy']||0)+12.887937545776367*(input['instrumentalness']||0)+4.8691792488098145*(input['valence']||0))))-18.70572853088379*1/(1+1/Math.exp((-2.5020105838775635+0.4075414538383484*(input['danceability']||0)+0.40179166197776794*(input['acousticness']||0)+0.8510603308677673*(input['energy']||0)+169.41151428222656*(input['instrumentalness']||0)-2.196516752243042*(input['valence']||0))))-0.6679232120513916*1/(1+1/Math.exp((3.755976915359497-36.59063720703125*(input['danceability']||0)+14.076555252075195*(input['acousticness']||0)-16.976600646972656*(input['energy']||0)+3.229679584503174*(input['instrumentalness']||0)+8.240936279296875*(input['valence']||0))))))),
+'CLASSICAL':1/(1+1/Math.exp((-20.523542404174805-25.32865333557129*1/(1+1/Math.exp((-8.392271995544434+7.710432529449463*(input['danceability']||0)+4.483984470367432*(input['acousticness']||0)-17.352312088012695*(input['energy']||0)+12.887937545776367*(input['instrumentalness']||0)+4.8691792488098145*(input['valence']||0))))+16.27237892150879*1/(1+1/Math.exp((-2.5020105838775635+0.4075414538383484*(input['danceability']||0)+0.40179166197776794*(input['acousticness']||0)+0.8510603308677673*(input['energy']||0)+169.41151428222656*(input['instrumentalness']||0)-2.196516752243042*(input['valence']||0))))+33.79419708251953*1/(1+1/Math.exp((3.755976915359497-36.59063720703125*(input['danceability']||0)+14.076555252075195*(input['acousticness']||0)-16.976600646972656*(input['energy']||0)+3.229679584503174*(input['instrumentalness']||0)+8.240936279296875*(input['valence']||0))))))),
+'POP':1/(1+1/Math.exp((-10.174331665039062-3.8872437477111816*1/(1+1/Math.exp((-8.392271995544434+7.710432529449463*(input['danceability']||0)+4.483984470367432*(input['acousticness']||0)-17.352312088012695*(input['energy']||0)+12.887937545776367*(input['instrumentalness']||0)+4.8691792488098145*(input['valence']||0))))+10.095831871032715*1/(1+1/Math.exp((-2.5020105838775635+0.4075414538383484*(input['danceability']||0)+0.40179166197776794*(input['acousticness']||0)+0.8510603308677673*(input['energy']||0)+169.41151428222656*(input['instrumentalness']||0)-2.196516752243042*(input['valence']||0))))-3.5891551971435547*1/(1+1/Math.exp((3.755976915359497-36.59063720703125*(input['danceability']||0)+14.076555252075195*(input['acousticness']||0)-16.976600646972656*(input['energy']||0)+3.229679584503174*(input['instrumentalness']||0)+8.240936279296875*(input['valence']||0))))))),
+'RnB':1/(1+1/Math.exp((-2.867238998413086-34.049747467041016*1/(1+1/Math.exp((-8.392271995544434+7.710432529449463*(input['danceability']||0)+4.483984470367432*(input['acousticness']||0)-17.352312088012695*(input['energy']||0)+12.887937545776367*(input['instrumentalness']||0)+4.8691792488098145*(input['valence']||0))))+3.3303561210632324*1/(1+1/Math.exp((-2.5020105838775635+0.4075414538383484*(input['danceability']||0)+0.40179166197776794*(input['acousticness']||0)+0.8510603308677673*(input['energy']||0)+169.41151428222656*(input['instrumentalness']||0)-2.196516752243042*(input['valence']||0))))+1.6304932832717896*1/(1+1/Math.exp((3.755976915359497-36.59063720703125*(input['danceability']||0)+14.076555252075195*(input['acousticness']||0)-16.976600646972656*(input['energy']||0)+3.229679584503174*(input['instrumentalness']||0)+8.240936279296875*(input['valence']||0))))))),
+'COUNTRY':1/(1+1/Math.exp((3.388113021850586-78.80740356445312*1/(1+1/Math.exp((-8.392271995544434+7.710432529449463*(input['danceability']||0)+4.483984470367432*(input['acousticness']||0)-17.352312088012695*(input['energy']||0)+12.887937545776367*(input['instrumentalness']||0)+4.8691792488098145*(input['valence']||0))))-10.57968521118164*1/(1+1/Math.exp((-2.5020105838775635+0.4075414538383484*(input['danceability']||0)+0.40179166197776794*(input['acousticness']||0)+0.8510603308677673*(input['energy']||0)+169.41151428222656*(input['instrumentalness']||0)-2.196516752243042*(input['valence']||0))))+1.7033580541610718*1/(1+1/Math.exp((3.755976915359497-36.59063720703125*(input['danceability']||0)+14.076555252075195*(input['acousticness']||0)-16.976600646972656*(input['energy']||0)+3.229679584503174*(input['instrumentalness']||0)+8.240936279296875*(input['valence']||0)))))))};
+}
+
+console.log(trainedNN({danceability: 0.81, acousticness: 0.961, energy: 0.17, instrumentalness: 0.942, valence: 0.336}))
