@@ -24,6 +24,13 @@
     var access_token = params.access_token,
         refresh_token = params.refresh_token,
         error = params.error;
+    var AI_guess;
+    function wait_guess(){
+        setTimeout( function(){
+          document.getElementById("guess").innerHTML=AI_guess;
+        }, 6000);
+      }
+      wait_guess();
 
     var user_id;
 
@@ -373,6 +380,7 @@
                                 console.log("Guessing genre of playlist with following data:");
                                 console.log(data);
                                 console.log("Guess: " + guess);
+                                AI_guess = guess;
                                 return guess;
                             }//guess_genre
 
