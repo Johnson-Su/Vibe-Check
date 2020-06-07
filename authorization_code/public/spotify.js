@@ -127,10 +127,16 @@
                     }
 
             // ********** end playlist stuff ************
+<<<<<<< HEAD
 
             //Vibe Check Function. Pass a playlist api url to the function to generate a vibe-checked playlist.
                             function vibe_check(playlist_url, threshold){
 
+=======
+            //Vibe Check Function. Pass a playlist api url to the function to generate a vibe-checked playlist.
+                            function vibe_check(playlist_url, threshold){
+                                
+>>>>>>> 2c26626ed4544a1b30ccdb29ce45117be66ebbdc
                                 //ajax call to access playlist
                                 $.ajax({
                                     url: playlist_url,
@@ -339,10 +345,11 @@
                                                 valence: playlist.valence.mean,                         //0: it's so saaad to 1: it's the best day ever
                                                 tempo: playlist.tempo.mean/250                              //0: 0 bpm fam to 1: 250 bpm like a madlad
                                             }
+                                            
                                             return audio_features;
                                             //return audio_features;
                                         }//get_audio_features
-
+                                        
                                         //funciton that returns the guess of the genre based off a trained neural net
                                         playlist.guess_genre = function(){
                                             playlist.compile();
