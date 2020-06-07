@@ -155,6 +155,7 @@ if (error) {
                                     var playlist_data = {
                                         acousticness: { mean: 0, stdev: 0 },
                                         danceability: { mean: 0, stdev: 0 },
+                                        instrumentalness: { mean: 0, stdev: 0},
                                         energy: { mean: 0, stdev: 0 },
                                         loudness: { mean: 0, stdev: 0 },
                                         speechiness: { mean: 0, stdev: 0 },
@@ -179,6 +180,7 @@ if (error) {
                                             console.log('Clear the data');
                                             playlist.acousticness.mean = 0;
                                             playlist.danceability.mean = 0;
+                                            playlist.instrumentalness.mean = 0;
                                             playlist.energy.mean = 0;
                                             playlist.loudness.mean = 0;
                                             playlist.speechiness.mean = 0;
@@ -187,6 +189,7 @@ if (error) {
 
                                             playlist.acousticness.stdev = 0;
                                             playlist.danceability.stdev = 0;
+                                            playlist.instrumentalness.stdev = 0;
                                             playlist.energy.stdev = 0;
                                             playlist.loudness.stdev = 0;
                                             playlist.speechiness.stdev = 0;
@@ -207,6 +210,7 @@ if (error) {
                                                 console.log(playlist.track_data[i].acousticness);
                                                 playlist.acousticness.mean += playlist.track_data[i].acousticness;
                                                 playlist.danceability.mean += playlist.track_data[i].danceability;
+                                                playlist.instrumentalness.mean += playlist.track_data[i].instrumentalness;
                                                 playlist.energy.mean += playlist.track_data[i].energy;
                                                 playlist.loudness.mean += playlist.track_data[i].loudness;
                                                 playlist.speechiness.mean += playlist.track_data[i].speechiness;
@@ -220,6 +224,7 @@ if (error) {
                                             console.log('called div_means');
                                             playlist.acousticness.mean /= playlist.count;
                                             playlist.danceability.mean /= playlist.count;
+                                            playlist.instrumentalness.mean /= playlist.count;
                                             playlist.energy.mean /= playlist.count;
                                             playlist.loudness.mean /= playlist.count;
                                             playlist.speechiness.mean /= playlist.count;
@@ -234,6 +239,7 @@ if (error) {
                                             for(var i = 0; i < playlist.track_data.length; i++){
                                                 playlist.acousticness.stdev += (playlist.track_data[i].acousticness - playlist.acousticness.mean)**2;
                                                 playlist.danceability.stdev += (playlist.track_data[i].danceability - playlist.danceability.mean)**2;
+                                                playlist.instrumentalness.mean += (playlist.track_data[i].instrumentalness - playlist.instrumentalness.mean)**2;
                                                 playlist.energy.stdev += (playlist.track_data[i].energy - playlist.energy.mean)**2;
                                                 playlist.loudness.stdev += (playlist.track_data[i].loudness - playlist.loudness.mean)**2;
                                                 playlist.speechiness.stdev += (playlist.track_data[i].speechiness - playlist.speechiness.mean)**2;
@@ -251,6 +257,7 @@ if (error) {
                                             console.log('called calc_stdevs');
                                             playlist.acousticness.stdev = Math.sqrt(playlist.acousticness.stdev / (playlist.count - 1));
                                             playlist.danceability.stdev = Math.sqrt(playlist.danceability.stdev / (playlist.count - 1));
+                                            playlist.instrumentalness.stdev = Math.sqrt(playlist.instrumentalness.stdev / (playlist.count - 1));
                                             playlist.energy.stdev = Math.sqrt(playlist.energy.stdev / (playlist.count - 1));
                                             playlist.loudness.stdev = Math.sqrt(playlist.loudness.stdev / (playlist.count - 1));
                                             playlist.speechiness.stdev = Math.sqrt(playlist.speechiness.stdev / (playlist.count - 1));
@@ -266,6 +273,7 @@ if (error) {
                                         calc_stdevs();
                                         console.log("Compiled Playlist Data. Logging playlist:");
                                         console.log(playlist);
+
                                     }//compile the playlists information
 
                                     /*Function to filter playlist tracks based off threshold from user input
@@ -279,6 +287,7 @@ if (error) {
                                         for(var i = 0; i < playlist.track_data.length; i++){
                                             if ((Math.abs(playlist.acousticness.mean - playlist.track_data[i].acousticness)/playlist.acousticness.stdev < filter_threshold)
                                                 || (Math.abs(playlist.danceability.mean - playlist.track_data[i].danceability)/playlist.danceability.stdev < filter_threshold)
+                                                || (Math.abs(playlist.instrumentalness.mean - playlist.track_data[i].instrumentalness)/playlist.instrumentalness.stdev < filter_threshold)
                                                 || (Math.abs(playlist.energy.mean - playlist.track_data[i].energy)/playlist.energy.stdev < filter_threshold)
                                                 || (Math.abs(playlist.loudness.mean - playlist.track_data[i].loudness)/playlist.loudness.stdev < filter_threshold)
                                                 || (Math.abs(playlist.speechiness.mean - playlist.track_data[i].danceability)/playlist.speechiness.stdev < filter_threshold)
@@ -347,15 +356,16 @@ if (error) {
                                     //funciton that returns the guess of the genre based off a trained neural net
                                     playlist.guess_genre = function(){
                                         playlist.compile();
-                                        return trainedNN({
+                                        let potential_genres = trainedNN({
                                             danceability: playlist.danceability.mean,
                                             acousticness: playlist.acousticness.mean,
                                             energy: playlist.energy.mean,
                                             instrumentalness: playlist.instrumentalness.mean,
                                             valence: playlist.valence.mean
                                         });
-
+                                        return Object.keys(potential_genres).reduce((a, b) => potential_genres[a] > potential_genres[b] ? a : b);
                                     }//guess_genre
+                                    
                                     //populate track_data once so we don't make a million API calls
                                     playlist.tracks.items.forEach(function(playlist_track){
                                         console.log(playlist_track.track.name);
