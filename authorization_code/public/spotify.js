@@ -117,7 +117,7 @@ if (error) {
                                        if(this.value <= 20 && flag == 0){
                                            flag = 1;
                                            console.log(document.getElementById("vslider").value)
-                                            // vibe_check(playlist.href, document.getElementById("vslider").value);
+                                            vibe_check(playlist.href, (100 - document.getElementById("vslider").value) / 33 + 0.2);
                                        } 
                                     });
                                 
