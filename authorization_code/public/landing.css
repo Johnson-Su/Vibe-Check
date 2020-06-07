@@ -1,5 +1,5 @@
 /* CSS files add styling rules to your content */
-#login, #loggedin, #vibe-checker {
+#login, #loggedin, #vibe-checker, #checkhide{
   display: none;
 }
 
@@ -789,4 +789,90 @@ input[type="range"][class="slider"] {
   font-weight: medium;
   line-height: 30px;
   text-align: center;
+}
+
+.coverinsert{
+  position: absolute;
+  width: 900px;
+  height: 79px;
+  left: calc(50% - 900px/2 + 13px);
+  top: calc(50% - 79px/2 - 47.5px);
+  z-index: 3;
+
+  background: #F26738;
+}
+
+.coverinsert1{
+  position: absolute;
+  width: 1022px;
+  height: 79px;
+  left: calc(50% - 1022px/2 + 13px);
+  top: calc(50% - 79px/2 - 47.5px);
+  z-index: 9;
+
+  background: #F26738;
+}
+
+
+
+.transi:before{
+  position: absolute;
+  width: 1000px;
+  height: 57px;
+  left: calc(50% - 485px);
+  top: calc(50% - 57px/2 - 43.5px);
+
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 44px;
+  line-height: 57px;
+  /* identical to box height */
+  z-index: 5;
+
+  text-align: center;
+  letter-spacing: 0.05em;
+
+  color: #FFFFFF;
+  content: '';
+  animation: animate infinite 10s;
+}
+
+@keyframes animate {
+  0%{
+    content: 'DRAG CASSETTE IN TO VIBE CHECK';
+  }
+
+  40%{
+    content: 'DRAG CASSETTE IN TO VIBE CHECK';
+  }
+
+  60%{
+    content: 'HOVER OVER SOME TEXT FOR MORE INFO';
+  }
+
+  100%{
+    content: 'HOVER OVER SOME TEXT FOR MORE INFO';
+  }
+}
+
+.computing{
+  position: absolute;
+  width: 1000px;
+  height: 57px;
+  left: calc(50% - 485px);
+  top: calc(50% - 57px/2 - 86.5px);
+
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 44px;
+  line-height: 57px;
+  /* identical to box height */
+  z-index: 10;
+
+  text-align: center;
+  letter-spacing: 0.05em;
+
+  color: #FFFFFF;
 }

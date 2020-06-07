@@ -13,20 +13,20 @@
         }
         return hashParams;
     }
-    
+
     // var userProfileSource = document.getElementById('user-profile-template').innerHTML,
     //     userProfileTemplate = Handlebars.compile(userProfileSource),
     //     userProfilePlaceholder = document.getElementById('user-profile');
-    
-    
+
+
     var params = getHashParams();
-    
+
     var access_token = params.access_token,
         refresh_token = params.refresh_token,
         error = params.error;
-    
+
     var user_id;
-    
+
     if (error) {
         alert('There was an error during the authentication');
     } else {
@@ -36,7 +36,7 @@
         //   access_token: access_token,
         //   refresh_token: refresh_token
         // });
-    
+
         $.ajax({
             url: 'https://api.spotify.com/v1/me',
             headers: {
@@ -50,7 +50,7 @@
                 $('#loggedin').show();
             }
         });
-    
+
         $.ajax({
             url: 'https://api.spotify.com/v1/me/playlists',
             headers: {
@@ -60,7 +60,7 @@
                 //document.getElementById("playlist-name").innerHTML = playlists.items[0].name;
                 console.log("Reached Playlists")
                 console.log(playlists);
-    
+
         // ************* playlist stuff ***************
                 // set playlist names to cassettes
                 var num=0;
@@ -91,7 +91,7 @@
                     num1++;
                   }
                 }
-    
+
                 for(playlist_id = 0; playlist_id < playlists.items.length; playlist_id++){
                     document.getElementById("playlist" + playlist_id).addEventListener('click',
                         function checkPlaylist(){
@@ -105,31 +105,32 @@
                                 success: function(playlist) {
                                     $('#loggedin').hide();
                                     $('#vibe-checker').show();
-    
+
                                     console.log("playlist: " + playlist.name);
                                     link = playlist.href.split("/");
                                     link = "https://open.spotify.com/embed/playlist/" + link[link.length - 1]
                                     document.getElementById("show-playlist").src = link;
-    
+
                                     var flag = 0;
                                     document.getElementById("check-slider").addEventListener('input',
                                         function(){
                                            if(this.value <= 20 && flag == 0){
                                                flag = 1;
+                                               $('#checkhide').show();
                                                console.log(document.getElementById("vslider").value)
                                                 vibe_check(playlist.href, (100 - document.getElementById("vslider").value) / 33 + 0.2);
-                                           } 
+                                           }
                                         });
                                     }
                                 },)
                             });
                     }
-    
+
             // ********** end playlist stuff ************
-    
+
             //Vibe Check Function. Pass a playlist api url to the function to generate a vibe-checked playlist.
                             function vibe_check(playlist_url, threshold){
-    
+
                                 //ajax call to access playlist
                                 $.ajax({
                                     url: playlist_url,
@@ -138,7 +139,7 @@
                                     },
                                     success: function(playlist) {
                                         console.log("Accessing playlist: " + playlist.name);
-    
+
                                         var playlist_data = {
                                             acousticness: { mean: 0, stdev: 0 },
                                             danceability: { mean: 0, stdev: 0 },
@@ -152,12 +153,12 @@
                                             track_data: [],
                                             filtered_uris: []
                                         };
-    
+
                                         //console.log(playlist_data);
                                         Object.assign(playlist, playlist_data)
                                         console.log("FINAL PLAYLIST OBJECT:");
                                         console.log(playlist);
-    
+
                                         //Function to compile all track data for means and variances
                                         playlist.compile = function() {
                                             //access https://api.spotify.com/v1/playlists/{playlist_id}/tracks and iterate through tracks
@@ -320,6 +321,7 @@
                                                         type: 'POST',
                                                         success: function(snapshot) {
                                                             console.log("Looks like we got it in!" + snapshot.snapshot_id);
+                                                            document.getElementById("show-playlist").src = "https://open.spotify.com/embed/playlist/" + new_playlist.id;
                                                         }//success
                                                     },);//ajax call to populate playlist
                                                 }//success
@@ -353,7 +355,7 @@
                                             });
                                             return Object.keys(potential_genres).reduce((a, b) => potential_genres[a] > potential_genres[b] ? a : b);
                                         }//guess_genre
-    
+
                                         //populate track_data once so we don't make a million API calls
                                         playlist.tracks.items.forEach(function(playlist_track){
                                             console.log(playlist_track.track.name);
@@ -363,7 +365,7 @@
                                                     'Authorization': 'Bearer ' + access_token
                                                 },
                                                 success: function(track) {
-    
+
                                                     // given a track object, return the uri and audio features
                                                     $.ajax({
                                                         url: 'https://api.spotify.com/v1/audio-features/' + track.id,
@@ -387,8 +389,8 @@
                                     }//successfully accessed playlist URL
                                 },)//ajax call access a playlist
                             }//Function: Vibe Check
-    
-                            
+
+
                             //function to search for a playlist based off a string query. Returns 20 playlists max.
                             function search_playlist(input_string){
                                 //ajax call to access playlist
@@ -435,7 +437,7 @@
                                                 num1++;
                                             }
                                         }
-    
+
                                         for(playlist_id = 20; playlist_id - 20 < 8; playlist_id++){
                                             document.getElementById("playlist" + playlist_id).addEventListener('click',
                                                 function(){
@@ -450,12 +452,12 @@
                                                         success: function(playlist) {
                                                             $('#loggedin').hide();
                                                             $('#vibe-checker').show();
-                            
+
                                                             console.log("playlist: " + playlist.name);
                                                             link = playlist.href.split("/");
                                                             link = "https://open.spotify.com/embed/playlist/" + link[link.length - 1]
                                                             document.getElementById("show-playlist").src = link;
-                            
+
                                                             var flag = 0;
                                                             document.getElementById("check-slider").addEventListener('input',
                                                                 function(){
@@ -463,40 +465,40 @@
                                                                     flag = 1;
                                                                     console.log(document.getElementById("vslider").value)
                                                                     vibe_check(playlist.href, (100 - document.getElementById("vslider").value) / 33 + 0.2);
-                                                                } 
+                                                                }
                                                                 });
                                                         }
                                                     },)
                                                 });
                                             }
-    
+
                                     }//successfully accessed playlist URL
                                 },)//ajax call access a playlist
                             }//Function: Search for a Playlist
                             document.getElementById("search-test").addEventListener('click', function(){
                                 search_playlist(document.getElementById("searchbar").value);
                             });
-    
+
                 $('#login').hide();
                 $('#loggedin').show();
             }
         });
-    
-    
+
+
         } else {
             // render initial screen
             $('#login').show();
             $('#loggedin').hide();
         }
-    
-    
+
+
     }
-    
-    
-    
+
+
+
     })();
-    
-    
+
+
     // MACHINE LEARNING PART WOOT WOOT//
     ////////////////////////////////////
     //    ____          ____
@@ -527,7 +529,7 @@
     ////////////////////////////////////
     const brain = require("brain.js")
     //brain.js trainedNN for 1k songs on the following:
-    
+
     // fields to consider:
     // acousticness
     // danceability
@@ -535,7 +537,7 @@
     // instumentalness
     // valence
     // tempo
-    
+
     // music genres:
     // 1=EDM
     // 2=pop
@@ -543,7 +545,7 @@
     // 5=lofi
     // 6=country
     // 7=classical
-    
+
     function trainedNN(input) {
     return {
     'LOFI':1/(1+1/Math.exp((-21.401443481445312+24.35832405090332*1/(1+1/Math.exp((-8.392271995544434+7.710432529449463*(input['danceability']||0)+4.483984470367432*(input['acousticness']||0)-17.352312088012695*(input['energy']||0)+12.887937545776367*(input['instrumentalness']||0)+4.8691792488098145*(input['valence']||0))))+16.992862701416016*1/(1+1/Math.exp((-2.5020105838775635+0.4075414538383484*(input['danceability']||0)+0.40179166197776794*(input['acousticness']||0)+0.8510603308677673*(input['energy']||0)+169.41151428222656*(input['instrumentalness']||0)-2.196516752243042*(input['valence']||0))))-23.76111602783203*1/(1+1/Math.exp((3.755976915359497-36.59063720703125*(input['danceability']||0)+14.076555252075195*(input['acousticness']||0)-16.976600646972656*(input['energy']||0)+3.229679584503174*(input['instrumentalness']||0)+8.240936279296875*(input['valence']||0))))))),
@@ -554,5 +556,5 @@
     'RnB':1/(1+1/Math.exp((-2.867238998413086-34.049747467041016*1/(1+1/Math.exp((-8.392271995544434+7.710432529449463*(input['danceability']||0)+4.483984470367432*(input['acousticness']||0)-17.352312088012695*(input['energy']||0)+12.887937545776367*(input['instrumentalness']||0)+4.8691792488098145*(input['valence']||0))))+3.3303561210632324*1/(1+1/Math.exp((-2.5020105838775635+0.4075414538383484*(input['danceability']||0)+0.40179166197776794*(input['acousticness']||0)+0.8510603308677673*(input['energy']||0)+169.41151428222656*(input['instrumentalness']||0)-2.196516752243042*(input['valence']||0))))+1.6304932832717896*1/(1+1/Math.exp((3.755976915359497-36.59063720703125*(input['danceability']||0)+14.076555252075195*(input['acousticness']||0)-16.976600646972656*(input['energy']||0)+3.229679584503174*(input['instrumentalness']||0)+8.240936279296875*(input['valence']||0))))))),
     'COUNTRY':1/(1+1/Math.exp((3.388113021850586-78.80740356445312*1/(1+1/Math.exp((-8.392271995544434+7.710432529449463*(input['danceability']||0)+4.483984470367432*(input['acousticness']||0)-17.352312088012695*(input['energy']||0)+12.887937545776367*(input['instrumentalness']||0)+4.8691792488098145*(input['valence']||0))))-10.57968521118164*1/(1+1/Math.exp((-2.5020105838775635+0.4075414538383484*(input['danceability']||0)+0.40179166197776794*(input['acousticness']||0)+0.8510603308677673*(input['energy']||0)+169.41151428222656*(input['instrumentalness']||0)-2.196516752243042*(input['valence']||0))))+1.7033580541610718*1/(1+1/Math.exp((3.755976915359497-36.59063720703125*(input['danceability']||0)+14.076555252075195*(input['acousticness']||0)-16.976600646972656*(input['energy']||0)+3.229679584503174*(input['instrumentalness']||0)+8.240936279296875*(input['valence']||0)))))))};
     }
-    
+
     console.log(trainedNN({danceability: 0.81, acousticness: 0.961, energy: 0.17, instrumentalness: 0.942, valence: 0.336}))
