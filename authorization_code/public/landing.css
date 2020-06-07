@@ -411,8 +411,8 @@ input[type="range"][class="slider"] {
   top: calc(50% + 200px);
   height: 500px;
   width: 500px;
-  background-color: #F26738;
-  border-radius: 45%; /* Smooth edges to appear like liquid */
+  background-color: #66CCE2;
+  border-radius: 47%; /* Smooth edges to appear like liquid */
   animation: spin 6s ease-in-out forwards; /* Set to forwards to freeze on last frame */
 }
 
@@ -421,7 +421,7 @@ input[type="range"][class="slider"] {
     transform: translateY(0) rotate(0deg);
   }
   100% {
-    transform: translateY(-100%) rotate(500deg);
+    transform: translateY(-100%) rotate(460deg);
   }
 }
 
@@ -959,4 +959,14 @@ input[type="range"][class="slider"] {
   font-weight: medium;
   line-height: 20px;
   text-align: center;
+}
+
+.ticks{
+  position: absolute;
+  width: 39px;
+  height: 287px;
+  left: calc(50% - 39px/2 + 364.5px);
+  top: calc(50% - 287px/2 + 225.5px);
+  z-index: 10;
+
 }
