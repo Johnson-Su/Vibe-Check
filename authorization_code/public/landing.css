@@ -177,9 +177,9 @@ input[type="range"][class="vslider"]{
 
   position: absolute;
   width: 1138px;
-  height: 561px;
+  height: 440px;
   left: calc(50% - 1100px/2);
-  top: calc(50% - 561px/2 + 48.5px);
+  top: calc(50% - 561px/2 + 165px);
 
   font-family: Gloria Hallelujah;
   font-style: normal;
@@ -194,7 +194,7 @@ input[type="range"][class="vslider"]{
   height:auto;
   width: 1138px;
   left: calc(50% - 1100px/2);
-  top: calc(50% - 561px/2 + 48.5px);
+  top: calc(50% - 561px/2 + 165px);
 }
 
 
@@ -526,4 +526,53 @@ input[type="range"][class="slider"] {
   background: #FFFFFF;
   border-radius: 5px;
   z-index: 5;
+}
+
+.searchchunk{
+  position: absolute;
+  width: 1060px;
+  height: 100px;
+  left: calc(50% - 1060px/2);
+  top: calc(50% - 100px/2 - 170px);
+  z-index: 5;
+}
+
+.searchthing{
+  position: absolute;
+  width: 300px;
+  height: 50px;
+  left: calc(50% + 20px);
+  top: calc(50% - 100px/2 - 150px);
+  z-index: 6;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 43px;
+  color: #2A2F3D;
+  border:none;
+  border-bottom: 5px solid black;
+  /* identical to box height */
+
+  letter-spacing: 0.05em;
+}
+
+.searchbutton {
+  position: absolute;
+  width: 150px;
+  height: 50px;
+  left: calc(50% + 340px);
+  top: calc(50% - 100px/2 - 144px);
+  z-index: 6;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 43px;
+  color: #F16738;
+  border:none;
+  background: transparent;
+  /* identical to box height */
+
+  letter-spacing: 0.05em;
 }

@@ -110,6 +110,19 @@ if (error) {
                                 link = playlist.href.split("/");
                                 link = "https://open.spotify.com/embed/playlist/" + link[link.length - 1]
                                 document.getElementById("show-playlist").src = link;
+                                playlist.tracks.items.forEach(function(track){
+                                    // console.log(track.track.name);
+
+                                    $.ajax({
+                                        url: 'https://api.spotify.com/v1/audio-features/' + track.track.id,
+                                        headers: {
+                                            'Authorization': 'Bearer ' + access_token
+                                        },
+                                        success: function(track) {
+                                            // console.log(track);
+                                            console.log("{ input: { danceability: "+ track.danceability+ ", acousticness: " + track.acousticness+ ", energy: " + track.energy+ ", instrumentalness: " +track.instrumentalness + ", valence: " + track.valence + " }, output: { Country: 1} },");
+                                        }
+                                    },) // ajax call
 
                                 var flag = 0;
                                 document.getElementById("check-slider").addEventListener('input',
@@ -118,17 +131,15 @@ if (error) {
                                            flag = 1;
                                            console.log(document.getElementById("vslider").value)
                                             vibe_check(playlist.href, (100 - document.getElementById("vslider").value) / 33 + 0.2);
-                                       } 
-                                    });
-                                
-                                
-                            }
-                        },)
-                    });
-            }
+                                        }
+                                    }); // check-slider input
+                                },) // forEach function(track)
+                            } // success function(playlist)
+                        },) // end first ajax
+                    }); // end click playlist
+                } // end for loop
 
         // ********** end playlist stuff ************
-
         //Vibe Check Function. Pass a playlist api url to the function to generate a vibe-checked playlist.
                         function vibe_check(playlist_url, threshold){
 
@@ -368,7 +379,6 @@ if (error) {
                             },)//ajax call access a playlist
                         }//Function: Vibe Check
 
-                        
                         //function to search for a playlist based off a string query. Returns 20 playlists max.
                         function search_playlist(input_string){
                             //ajax call to access playlist
@@ -386,7 +396,6 @@ if (error) {
                                 },
                                 success: function(response) {
                                     console.log("Found " + response.playlists.items.length + " from query: " + input_string);
-                                    // console.log(response.playlists);
                                     var num=0;
                                     var num1=0;
                                     for(index = 20; index - 20 < 8; index++){
@@ -430,12 +439,12 @@ if (error) {
                                                     success: function(playlist) {
                                                         $('#loggedin').hide();
                                                         $('#vibe-checker').show();
-                        
+
                                                         console.log("playlist: " + playlist.name);
                                                         link = playlist.href.split("/");
                                                         link = "https://open.spotify.com/embed/playlist/" + link[link.length - 1]
                                                         document.getElementById("show-playlist").src = link;
-                        
+
                                                         var flag = 0;
                                                         document.getElementById("check-slider").addEventListener('input',
                                                             function(){
@@ -453,6 +462,8 @@ if (error) {
                                 }//successfully accessed playlist URL
                             },)//ajax call access a playlist
                         }//Function: Search for a Playlist
+
+                        // implements search
                         document.getElementById("search-test").addEventListener('click', function(){
                             search_playlist(document.getElementById("searchbar").value);
                         });
