@@ -124,7 +124,17 @@ if (error) {
                                         }
                                     },)
 
-                                });
+                                var flag = 0;
+                                document.getElementById("check-slider").addEventListener('input',
+                                    function(){
+                                       if(this.value <= 20 && flag == 0){
+                                           flag = 1;
+                                           console.log(document.getElementById("vslider").value)
+                                            vibe_check(playlist.href, (100 - document.getElementById("vslider").value) / 33 + 0.2);
+                                       }
+                                    });
+
+
                             }
                         },)
                     });
@@ -405,11 +415,11 @@ if (error) {
 
 // MACHINE LEARNING PART WOOT WOOT//
 ////////////////////////////////////
-//     ____          ____
-//    |oooo|        |oooo|
-//    |oooo| .----. |oooo|
-//    |Oooo|/\_||_/\|oooO|
-//    `----' / __ \ `----'
+//      ____          ____
+//     |oooo|        |oooo|
+//     |oooo| .----. |oooo|
+//     |Oooo|/\_||_/\|oooO|
+//     `----' / __ \ `----'
 //    ,/ |#|/\/__\/\|#| \,
 //   /  \|#|| |/\| ||#|/  \
 //  / \_/|_|| |/\| ||_| \_/ \
